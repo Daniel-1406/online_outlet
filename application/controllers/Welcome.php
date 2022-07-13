@@ -1,0 +1,154 @@
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Welcome extends CI_Controller {
+
+    public function __construct() {
+        parent::__construct();
+        $this->load->library('session');
+    }
+
+    public function index() {
+        $this->welcomemodel->setuptables();
+        $this->load->view('login.php');
+    }
+
+    public function login() {
+        $val = $this->students->adminlogin();
+        if ($val == "wrong") {
+            $data["val"] = "<span style='color:red'>Wrong Username or password!</span>";
+            $this->load->view("login", $data);
+        } else {
+            $this->load->view("welcome_page");
+        }
+    }
+
+    public function schooldetails() {
+        $this->load->view("schooldetails");
+    }
+
+    public function updateschoolinfo() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $this->form_validation->set_rules("schoolname", "School Name", "required|trim|min_length[3]|max_length[100]");
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view("schooldetails");
+        } else {
+            $val["schoolname"] = $this->input->post("schoolname");
+                $lat["msg"] = $this->students->schoolname($val);
+                $this->load->view("schoolupdatefeedback", $lat);
+        }
+    }
+
+    public function openstudents() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $rtnvals = $this->students->getAll();
+        $data["rtnhead"] = $rtnvals["head"];
+        $data["rtnbody"] = $rtnvals["body"];
+        $this->load->view("viewstudents", $data);
+    }
+
+    public function deletethisstudent() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $this->students->deletestudent($this->uri->segment(3));
+        redirect("welcome/openstudents");
+    }
+
+    public function editthisstudent() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $rtnvals = $this->students->editstudent($this->uri->segment(3));
+        $this->load->view("editstudents", $rtnvals);
+        
+    }
+
+    public function updatestudents() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        //then validation 
+        $this->form_validation->set_rules("surname", "Surname", "required|trim|min_length[3]|max_length[30]|alpha");
+        $this->form_validation->set_rules("firstname", "First Name", "required|trim|min_length[3]|max_length[30]|alpha");
+        $this->form_validation->set_rules("username", "Username", "required|trim|min_length[3]|max_length[30]|alpha_numeric");
+        $this->form_validation->set_rules("pass", "Password", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("gender", "Gender", "required|trim");
+
+
+        if ($this->form_validation->run() == FALSE) {
+            // $rtnvals=$this->students->editstudent($this->uri->segment(3));
+
+            $this->load->view("editstudents");
+        } else {
+            $values["surname"] = $this->input->post("surname");
+            $values["firstname"] = $this->input->post("firstname");
+            $values["username"] = $this->input->post("username");
+            $values["password"] = md5($this->input->post("pass"));
+            $values["gender"] = $this->input->post("gender");
+            $values["id"] = $this->uri->segment(3);
+            //$values["id"] = $this->input->post("rtnid");
+            $conf_pass = md5($this->input->post("confirm_pass"));
+            if ($values["password"] != $conf_pass) {
+                $data["pass_err"] = "<span style='color:red'>Passwords do not match</span>";
+                $this->load->view("editstudents", $data);
+            } else {
+                if ($this->students->updatestudents($values))
+                    redirect("welcome/openstudents");
+            }
+        }
+    }
+
+    public function view_reg_stu() {
+
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $this->load->view('welcome_message.php');
+    }
+
+    public function openreg() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $this->load->view('home.php');
+    }
+
+    public function reg_stu() {
+        if ($this->session->userdata("admin") == "")
+            redirect("login/");
+        //then validation 
+        $this->form_validation->set_rules("surname", "Surname", "required|trim|min_length[3]|max_length[30]|alpha");
+        $this->form_validation->set_rules("firstname", "First Name", "required|trim|min_length[3]|max_length[30]|alpha");
+        $this->form_validation->set_rules("username", "Username", "required|trim|min_length[3]|max_length[30]|alpha_numeric");
+        $this->form_validation->set_rules("pass", "Password", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("gender", "Gender", "required|trim");
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view("home");
+        } else {
+            $val["surname"] = $this->input->post("surname");
+            $val["firstname"] = $this->input->post("firstname");
+            $val["username"] = $this->input->post("username");
+            $val["password"] = md5($this->input->post("pass"));
+            $val["gender"] = $this->input->post("gender");
+            $conf_pass = md5($this->input->post("confirm_pass"));
+            if ($val["password"] != $conf_pass) {
+                $data["pass_err"] = "<span style='color:red'>Passwords do not match</span>";
+                $this->load->view("home.php", $data);
+            } else {
+                $lat["msg"] = $this->students->register_stu($val);
+                $this->load->view("result", $lat);
+            }
+        }
+    }
+
+    public function logout() {
+        $this->session->unset_userdata("admin");
+        redirect("welcome");
+    }
+
+}
+
