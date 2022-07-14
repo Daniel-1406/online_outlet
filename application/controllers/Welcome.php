@@ -25,7 +25,9 @@ class Welcome extends CI_Controller {
     }
 
     public function schooldetails() {
-        $this->load->view("schooldetails");
+        $data["state"]=  $this->welcomemodel->getnigeriastates();
+        $data["school"]=  $this->welcomemodel->getschoolinformation();
+        $this->load->view("schooldetails",$data);
     }
 
     public function updateschoolinfo() {
@@ -33,10 +35,9 @@ class Welcome extends CI_Controller {
             redirect("welcome/");
         $this->form_validation->set_rules("schoolname", "School Name", "required|trim|min_length[3]|max_length[100]");
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view("schooldetails");
+            $this->schooldetails();
         } else {
-            $val["schoolname"] = $this->input->post("schoolname");
-                $lat["msg"] = $this->students->schoolname($val);
+            $lat["msg"] = $this->welcomemodel->registerschoolinfo(); 
                 $this->load->view("schoolupdatefeedback", $lat);
         }
     }

@@ -26,34 +26,13 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>dist/js/adminlte.min.js"></script> 
 <!-- Page specific script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
-<!-- jQuery -->
-<script src="<?php print base_url()?>plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="<?php print base_url()?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- bs-custom-file-input -->
+
+ 
+ <script src="<?php print base_url()?>plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <script src="<?php print base_url()?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php print base_url()?>dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
- <script>
+<script src="<?php print base_url()?>plugins/select2/js/select2.full.min.js"></script>
+<!-- <script>
 $(function () {
   bsCustomFileInput.init();
 });
-</script>
+</script>-->
