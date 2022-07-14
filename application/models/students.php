@@ -3,7 +3,7 @@
 class students extends CI_Model {
 
     function adminlogin() {
-        $q = $this->db->where("username", $this->input->post("username"))->where("password", md5($this->input->post("password")))->get("admin");
+        $q = $this->db->where("username", $this->input->post("username"))->where("password", ($this->input->post("password")))->get("admin");
         if ($q->num_rows() > 0) {
             $this->session->set_userdata("admin", $this->input->post("username"));
             return $this->input->post("username");
