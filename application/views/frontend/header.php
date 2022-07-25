@@ -14,20 +14,20 @@ Licence URI: http://www.os-templates.com/template-terms
 <link href="<?php echo base_url();?>layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 
 </head>
-<body id="top">
+<body id="top" style="background-color: <?php echo $majorcolor?>;">
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ -->
-<div class="wrapper row0">
-  <div id="topbar" class="clear"> 
+<div class="wrapper row0" >
+  <div id="topbar" class="clear" style="background-color: <?php echo $majorcolor?>;"> 
     <!-- ################################################################################################ -->
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">A - Z Index</a></li>
-        <li><a href="#">Student Login</a></li>
-        <li><a href="#">Staff Login</a></li>
+    <nav >
+      <ul >
+        <li ><a href="#" style="background-color: <?php echo $majorcolor?>;">Home</a></li>
+        <li><a href="#" style="background-color: <?php echo $majorcolor?>;">Contact Us</a></li>
+        <li><a href="#" style="background-color: <?php echo $majorcolor?>;">A - Z Index</a></li>
+        <li><a href="#" style="background-color: <?php echo $majorcolor?>;">Student Login</a></li>
+        <li><a href="#" style="background-color: <?php echo $majorcolor?>;">Staff Login</a></li>
       </ul>
     </nav>
     <!-- ################################################################################################ --> 
@@ -36,7 +36,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ -->
-<div class="wrapper row1">
+<div class="wrapper row1" style="background-color: <?php echo $majorcolor?>;">
   <header id="header" class="clear"> 
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
@@ -58,8 +58,8 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ -->
-<div class="wrapper row2">
-  <div class="rounded">
+<div class="wrapper row2" style="background-color:<?php //echo $minorcolor?>;">
+  <div class="rounded" style="background-color:<?php echo $minorcolor?>;">
     <nav id="mainav" class="clear"> 
       <!-- ################################################################################################ -->
       <ul class="clear">

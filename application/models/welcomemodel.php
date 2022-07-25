@@ -29,6 +29,17 @@ class Welcomemodel extends CI_Model {
         return $record;
     }
     
+    
+    function getmajorcolor(){
+        $q= $this->db->query("select majorcolour from schoolinformation ");
+        $color="";
+        foreach($q->result() as $rows){
+            $color=$rows->majorcolour;
+        }
+           return $color; 
+        }
+        
+    
     function getschoolinformation(){
         $qq=  $this->db->get("schoolinformation");
         $record=array();

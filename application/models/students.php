@@ -3,7 +3,7 @@
 class students extends CI_Model {
 
     function adminlogin() {
-        $q = $this->db->where("username", $this->input->post("username"))->where("password", ($this->input->post("password")))->get("admin");
+        $q = $this->db->where("username", $this->input->post("username"))->where("password", md5($this->input->post("password")))->get("admin");
         if ($q->num_rows() > 0) {
             $this->session->set_userdata("admin", $this->input->post("username"));
             return $this->input->post("username");
@@ -14,9 +14,12 @@ class students extends CI_Model {
 
     function register_stu($val) {
         if ($this->db->insert("students", $val)) {
-            return "<span style='color:green;'>Registration successful!</span>";
+            return "<span style='color:green;'>Registration successful!</span>
+                    <a href='#' class='btn btn-primary'>Register Another Student</a>
+                    <a href=#' class='btn btn-primary'>Home</a>";
         } else {
             return "<span style='color:;red'>Unable to register student!<br>Try again!</span>";
+        
         }
     }
 
@@ -33,7 +36,7 @@ class students extends CI_Model {
             $db_content["username"] = $row->username;
             $db_content["password"] = $row->password;
             $db_content["gender"] = $row->gender;
-            $db_content["studentid"] = $row->gender;
+            $db_content["studentid"] = $id;
         }
 
 
@@ -57,10 +60,13 @@ class students extends CI_Model {
         foreach ($query->result() as $row) {
             $form_open = form_open('welcome/delete');
             $form_hidden = ""; //form_input('del',set_value($row->id,$row->id));
-            $form_delete = anchor(base_url('index.php/welcome/deletethisstudent/' . $row->id), form_button('button', 'Delete'));
-            $form_edit = anchor(base_url('index.php/welcome/editthisstudent/' . $row->id), form_button('button', 'Edit'));
+            $form_delete2 = "<a class='btn btn-danger btn-sm' href='deletethisstudent/$row->id'><i class='fas fa-trash'> </i>Delete</a>";
+            $form_edit2 = "<a class='btn btn-info btn-sm' href='editthisstudent/$row->id'><i class='fas fa-pencil-alt'></i>Edit </a>";
+
+            //$form_delete = anchor(base_url('index.php/welcome/deletethisstudent/' . $row->id), form_button('button', 'Delete') );
+            //$form_edit = anchor(base_url('index.php/welcome/editthisstudent/' . $row->id), form_button('button', 'Edit'));
             $form_close = form_close();
-            $body.="<tr><td>" . $row->surname . "</td><td>" . $row->firstname . "</td><td>" . $row->gender . "</td><td>" . $row->regdate . "</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
+            $body.="<tr><td>" . $row->surname . "</td><td>" . $row->firstname . "</td><td>" . $row->gender . "</td><td>" . $row->regdate . "</td><td>" . $form_open . "" . $form_edit2 . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete2 . "" . $form_close . "</td></tr>";
         }
         $db_content["head"] = $head;
         $db_content["body"] = $body;
@@ -77,24 +83,22 @@ class students extends CI_Model {
 
     function getschoolinfo() {
         $query = $this->db->query("select * from schoolinformation");
-        $data=array();
-         $data["schoolidentity"]="";
-         $data["address"]="";
+        $data = array();
+        $data["schoolidentity"] = "";
+        $data["address"] = "";
         foreach ($query->result() as $row) {
             $data["schoolidentity"] = "<h1><a href='index.html'>$row->schoolname</a></h1><p>$row->schoolmotto</p>";
             $data["address"] = "<div class='one_third'>
         <address>
         $row->schoolname<br>
         $row->address<br>
-        $row->city<br>
-        $row->postcode<br>
-        <br>
+        $row->nigeirastates State<br>
         <i class='fa fa-phone pright-10'></i>$row->phonenumber<br>
         <i class='fa fa-envelope-o pright-10'></i> <a href='#'>$row->email.com</a>
         </address>
       </div>";
-            //$data["majorcolor"] = "$row->majorcolor";
-            //$data["minorcolor"] = "$row->minorcolor";
+            $data["majorcolor"] = "$row->majorcolour";
+            $data["minorcolor"] = "$row->minorcolour";
         }
         return $data;
     }

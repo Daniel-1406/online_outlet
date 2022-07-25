@@ -52,7 +52,9 @@
                                     ?>
                                     <div class="card-body">
 
-<?php echo $msg?>
+                                        <?php echo $msg ?>
+                                    <a href="#" class="btn btn-primary">View Site</a>
+                                    <a href="<?php echo base_url(); ?>index.php/menuci/openmenuview" class="btn btn-primary">View Registered Menu</a>
                                     </div>
 
 

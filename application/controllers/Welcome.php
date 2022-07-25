@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-    public function __construct() {
-        parent::__construct();
-        $this->load->library('session');
-    }
+//    public function __construct() {
+//        parent::__construct();
+//        $this->load->library('session');
+//    }
 
     public function index() {
-        $this->welcomemodel->setuptables();
+        //$this->welcomemodel->setuptables();
         $this->load->view('login.php');
     }
 
@@ -34,13 +34,21 @@ class Welcome extends CI_Controller {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
         $this->form_validation->set_rules("schoolname", "School Name", "required|trim|min_length[3]|max_length[100]");
+        $this->form_validation->set_rules("schoolmotto", "School Motto", "required|trim|min_length[3]|max_length[100]");
+        $this->form_validation->set_rules("email", "Email", "required|trim|min_length[3]|max_length[100]");
+        $this->form_validation->set_rules("address", " Address", "required|trim|min_length[3]|max_length[100]");
+        $this->form_validation->set_rules("city", " City", "required|trim|min_length[3]|max_length[100]");
+        $this->form_validation->set_rules("phonenumber", "Phone Number ", "required|trim|min_length[3]|max_length[100]");
+        $this->form_validation->set_rules("nigeriastates", "State", "trim|min_length[3]|max_length[100]");
+        $this->form_validation->set_rules("majorcolor", " Major Color", "trim|min_length[3]|max_length[100]");
+        $this->form_validation->set_rules("minorcolor", "Minor Color", "trim|min_length[3]|max_length[100]");
         if ($this->form_validation->run() == FALSE) {
             $this->schooldetails();
         } else {
             $lat["msg"] = $this->welcomemodel->registerschoolinfo(); 
                 $this->load->view("schoolupdatefeedback", $lat);
         }
-    }
+        }
 
     public function openstudents() {
         if ($this->session->userdata("admin") == "")
@@ -81,9 +89,8 @@ class Welcome extends CI_Controller {
 
 
         if ($this->form_validation->run() == FALSE) {
-            // $rtnvals=$this->students->editstudent($this->uri->segment(3));
-
-            $this->load->view("editstudents");
+             $rtnvals = $this->students->editstudent($this->input->post("studentid"));
+        $this->load->view("editstudents", $rtnvals);
         } else {
             $values["surname"] = $this->input->post("surname");
             $values["firstname"] = $this->input->post("firstname");

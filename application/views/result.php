@@ -42,9 +42,10 @@
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <div style="padding:10px;">
-                                    <?php
-                                 echo $msg; ?>
-                                        </div>
+                                        <?php echo $msg; ?>
+                                        <a href="<?php echo base_url(); ?>index.php/menuci/openmenuview" class="btn btn-primary">View registered menu</a>
+                                        <a href="<?php echo base_url(); ?>index.php/menuci/openregistermenu" class="btn btn-primary">Back</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -80,13 +80,13 @@
                                                 <option>Female</option> 
                                             </select>-->
                                         </div>
-<?php// print form_hidden("studentid", set_value("studentid",$studentid), 'class="form-control" id="exampleInputEmail1" placeholder="Confirm password"') ?>
+<?php print form_hidden("studentid", set_value("studentid",$studentid), 'class="form-control" id="exampleInputEmail1"') ?>
                                     </div>
 
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-<?php print form_submit("Submit", "Update", 'class="btn btn-primary"') ?>
+                                <?php print form_submit("Submit", "Update", 'class="btn btn-primary"') ?>
 
                                     </div>
 <?php print form_close(); ?>

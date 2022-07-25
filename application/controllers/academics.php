@@ -11,8 +11,8 @@ class  Academics extends CI_controller{
         $data=$this->students->getschoolinfo();
         $features["rtnschoolidentity"]=$data["schoolidentity"];
         $features["rtnaddress"]=$data["address"];
-        //$features["rtnmajorcolor"]=$data["majorcolor"];
-        //$features["rtncolor"]=$data["minorcolor"];
+        $features["rtnmajorcolor"]=$data["majorcolor"];
+        $features["rtnminorcolor"]=$data["minorcolor"];
         
         $features["rtncarousel"]=$slideshow["carousel"];
         $features["rtnslide"]=$slideshow["slide"];

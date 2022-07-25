@@ -21,12 +21,23 @@ class Carouselmodel extends CI_Model {
         }
     }
 
+    
+    function getmajorcolor(){
+        $q= $this->db->query("select majorcolour from schoolinformation ");
+        $color="";
+        foreach($q->result() as $rows){
+            $color.=$rows->majorcolour;
+        }
+           return $color; 
+        }
+
     function displaycarousel() {
         $q = $this->db->query("select * from carousel where deleted='f' order by orientation");
         $carousel = "";
         $slide = "";
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $res) {
+                $majorcolor=$this->getmajorcolor();
                 $carousel.="<figure id = 'slide-" . $res->carouselid . "'><a class = 'view' href = '#'><img src = './images/" . $res->photo . "' alt = ''></a>
             <figcaption>
             <h2>" . $res->heading . "</h2>
@@ -35,7 +46,7 @@ class Carouselmodel extends CI_Model {
             </a></p>
             </figcaption>
             </figure>";
-                $slide.="<li><a href='#slide-" . $res->carouselid . "'>$res->name</a></li>
+                $slide.="<li><a href='#slide-$res->carouselid' style='background-color:$majorcolor;' >$res->name</a></li>
 ";
                 $content["carousel"] = $carousel;
                 $content["slide"] = $slide;
@@ -43,7 +54,7 @@ class Carouselmodel extends CI_Model {
         }
         return $content;
     }
-
+     
     function getcarosel() {
 
         $query = $this->db->query("select * from carousel where deleted='f'");
@@ -71,14 +82,19 @@ class Carouselmodel extends CI_Model {
         foreach ($query->result() as $row) {
             $form_open = form_open('welcome/delete');
             $form_hidden = ""; //form_input('del',set_value($row->id,$row->id));
-            $form_delete = anchor(base_url('index.php/welcome/deletethisstudent/' . $row->carouselid), form_button('button', 'Delete'));
-            $form_edit = anchor(base_url('index.php/welcome/editthisstudent/' . $row->carouselid), form_button('button', 'Edit'));
+            $form_delete1 = anchor(base_url('index.php/welcome/deletethisstudent/' . $row->carouselid), form_button('button', 'Delete'));
+            $form_edit = "<a class='btn btn-info btn-sm' href='index.php/welcome/editthisstudent/$row->id'><i class='fas fa-pencil-alt'></i>Edit </a>";
+            $form_edit1 = anchor(base_url('index.php/welcome/editthisstudent/' . $row->carouselid), form_button('button', 'Edit'));
+            $form_delete = "<a class='btn btn-danger btn-sm' href='deletethismember/$row->id'><i class='fas fa-trash'> </i>Delete</a>";
             $form_close = form_close();
-            $body.="<tr><td>$row->name</td><td><img height='6' src='./images/" . $row->photo . " alt=''/></td><td>" . $row->heading . "</td><td>" . $row->description . "</td><td>$row->url</td><td>$row->orientation</td><td>$row->status</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
+            $body.="<tr><td>$row->name</td><td><img height='6' src='base_url('images/1')images/" . $row->photo . "' alt='' /></td><td>" . $row->heading . "</td><td>" . $row->description . "</td><td>$row->url</td><td>$row->orientation</td><td>$row->status</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
         }
         $db_content["head"] = $head;
         $db_content["body"] = $body;
         return $db_content;
     }
 
+    function deletecarousel($id) {
+        $this->db->query("update carousel set deleted='t' where id=$id");
+    }
 }

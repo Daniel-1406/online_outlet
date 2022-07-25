@@ -40,10 +40,16 @@
                                         <h3 class="card-title">Status</h3>
                                     </div> 
                                     <?php print $msg ?> 
+                                    <a href="<?php echo base_url(); ?>index.php/carosel/createcarousel" class="btn btn-warning">Create carousel</a>
+                                    <a href="<?php echo base_url(); ?>index.php/carosel/viewcarousel" class="btn btn-info">View registered Carousel</a>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+
                 </section>
                 <!-- /.content -->
             </div>

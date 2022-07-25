@@ -37,14 +37,17 @@
                             <div class="col-md-6"> 
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title-danger">Fedback</h3>
+                                        <h3 class="card-title-danger">Feedback</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <div style="padding:10px;">
-                                    <?php
-                                 echo $msg; ?>
-                                        </div>
+                                        <?php
+                                        echo $msg;
+                                        ?>
+                                        <a href="<?php echo base_url(); ?>index.php/menuci/openmenuview" class="btn btn-primary">View registered menu</a>
+                                        <a href="<?php echo base_url(); ?>index.php/menuci/openregistermenu" class="btn btn-primary">Back</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

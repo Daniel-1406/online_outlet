@@ -40,6 +40,8 @@
                                         <h3 class="card-title">Status</h3>
                                     </div> 
                                     <?php print $msg ?> 
+                                    <a href="<?php echo base_url(); ?>index.php/menuci/openmenuview" class="btn btn-primary">View registered menu</a>
+                                    <a href="<?php echo base_url(); ?>index.php/menuci/openregistermenu" class="btn btn-primary">Back</a>
                                 </div>
                             </div>
                         </div>

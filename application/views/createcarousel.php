@@ -53,15 +53,15 @@
                                     <div class="card-body">
                                         <div class="form-group">  
                                             <label for="exampleInputEmail1">Carousel name</label>
-<?php print form_input("name", set_value("name", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter carousel name"') ?>
+                                            <?php print form_input("name", set_value("name", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter carousel name"') ?>
                                             <!--<input type="text" >-->
                                         </div>
-                                      
+
                                         <div class="form-group">
-                                            <label for="exampleInputFile">Carousel photo</label>
+                                            <label for="exampleInputFile">File input</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="userfile" id="exampleInputFile">
+                                                    <input type="file" class="custom-file-input" name="userfile"id="exampleInputFile">
                                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                 </div>
                                                 <div class="input-group-append">
@@ -72,23 +72,23 @@
 
                                         <div class="form-group">  
                                             <label for="exampleInputEmail1">Carousel heading</label>
-<?php print form_input("heading", set_value("heading", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter carousel heading"') ?>
+                                            <?php print form_input("heading", set_value("heading", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter carousel heading"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Description</label>
-<?php print form_textarea("description", set_value("description", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter carousel description"') ?>
+                                            <?php print form_textarea("description", set_value("description", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter carousel description"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">  
                                             <label for="exampleInputEmail1">Carousel url</label>
-<?php print form_input("url", set_value("url", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter carousel url"') ?>
+                                            <?php print form_input("url", set_value("url", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter carousel url"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <!--                                        <div class="form-group">
                                                                                     <label for="exampleInputEmail1">Orientation</label>
                                                                                     <select name="orientation" class="custom-select rounded-0" id="exampleSelectRounded0">
-<?php //echo $menu;  ?>
+                                        <?php //echo $menu;  ?>
                                                                                     </select>
                                                                                 </div>-->
 
@@ -119,10 +119,10 @@
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-<?php print form_submit("Submit", "Create Carousel", 'class="btn btn-primary"') ?>
+                                        <?php print form_submit("Submit", "Create Carousel", 'class="btn btn-primary"') ?>
 
                                     </div>
-<?php print form_close(); ?>
+                                    <?php print form_close(); ?>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
-<?php $this->load->view("load/footer") ?>
+            <?php $this->load->view("load/footer") ?>
 
 
         </div>

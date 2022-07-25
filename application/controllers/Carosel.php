@@ -22,8 +22,12 @@ class Carosel extends CI_Controller {
         $this->form_validation->set_rules("heading", "heading", "required|trim");
         $this->form_validation->set_rules("description", "Deescription", "required|trim|min_length[3]");
 
+
         $config['upload_path'] = './images/';
         $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 10000000;
+        $config['max_width'] = 200000;
+        $config['max_height'] = 200000;
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('userfile')) {
@@ -48,9 +52,9 @@ class Carosel extends CI_Controller {
     }
 
     public function viewcarousel() {
-          if ($this->session->userdata("admin") == "")
+        if ($this->session->userdata("admin") == "")
             redirect("welcome/");
-          $rtnvals = $this->carouselmodel->viewcarosel();
+        $rtnvals = $this->carouselmodel->viewcarosel();
         $data["rtnhead"] = $rtnvals["head"];
         $data["rtnbody"] = $rtnvals["body"];
         $this->load->view("viewmenu", $data);

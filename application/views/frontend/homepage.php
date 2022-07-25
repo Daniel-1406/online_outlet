@@ -1,13 +1,15 @@
 
 <?php $data["menu"]=$menu;
+     $data["majorcolor"]=$rtnmajorcolor;
+     $data["minorcolor"]=$rtnminorcolor;
       $data["schoolidentity"]=$rtnschoolidentity;?>
 <?php $this->load->view("frontend/header",$data);?>
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ -->
-<div class="wrapper">
-  <div id="slider">
-    <div id="slide-wrapper" class="rounded clear"> 
+<div class="wrapper" style="background-color:<?php// echo $rtnminorcolor?>;">
+  <div id="slider" style="background-color:<?php //echo $rtnminorcolor?>;">
+    <div id="slide-wrapper" class="rounded clear" style="background-color:<?php echo$rtnminorcolor?>;"> 
       <!-- ################################################################################################ -->
       <?php echo $rtncarousel?>
       <!-- ################################################################################################ -->
@@ -21,9 +23,9 @@
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ -->
-<div class="wrapper row3">
-  <div class="rounded">
-    <main class="container clear"> 
+<div class="wrapper row3" style="background-color:<?php// echo$rtnminorcolor?>;">
+  <div class="rounded" style="background-color:<?php echo$rtnminorcolor?>;">
+    <main class="container clear" style="background-color:<?php echo$rtnminorcolor?>;"> 
       <!-- main body --> 
       <!-- ################################################################################################ -->
       <div class="group btmspace-30"> 
@@ -86,7 +88,7 @@
       </div>
       <!-- ################################################################################################ --> 
       <!-- ################################################################################################ -->
-      <div id="twitter" class="group btmspace-30">
+      <div id="twitter" class="group btmspace-30" style="background-color:<?php echo $rtnmajorcolor?>;">
         <div class="one_quarter first center"><a href="#"><i class="fa fa-twitter fa-3x"></i><br>
           Follow Us On Twitter</a></div>
         <div class="three_quarter bold">
@@ -179,8 +181,8 @@
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ -->
-<div class="wrapper row4">
-  <div class="rounded">
+<div class="wrapper row4" style="background-color:<?php //echo$rtnminorcolor?>;">
+  <div class="rounded" style="background-color:<?php echo$rtnminorcolor?>;">
     <footer id="footer" class="clear"> 
       <!-- ################################################################################################ -->
       <div class="one_third first">
@@ -212,11 +214,11 @@
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ --> 
 <!-- ################################################################################################ -->
-<div class="wrapper row5">
-  <div id="copyright" class="clear"> 
+<div class="wrapper row5" style="background-color:<?php echo $rtnmajorcolor?>;">
+  <div id="copyright" class="clear" style="background-color:<?php echo $rtnmajorcolor?>;"> 
     <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <p class="fl_left" >Copyright &copy; 2014 - All Rights Reserved - <a href="#" style="background-color:<?php echo $rtnmajorcolor?>;">Domain Name</a></p>
+    <p class="fl_right" style="background-color:<?php echo $rtnmajorcolor?>;">Template by <a target="_blank" style="background-color:<?php echo $rtnmajorcolor?>;" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
     <!-- ################################################################################################ --> 
   </div>
 </div>
