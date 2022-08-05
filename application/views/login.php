@@ -54,12 +54,7 @@
         </div>
       <?php echo form_close() ;?>
 
-     
-      <!-- /.social-auth-links -->
-
-     
       <p class="mb-1">
-        <a href="register.html" class="text-center">Register as a new student</a>
       </p>
     </div>
     <!-- /.card-body -->

@@ -30,14 +30,16 @@ class Carosel extends CI_Controller {
         $config['max_height'] = 200000;
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('userfile')) {
-            $error = array('error' => $this->upload->display_errors());
-            $this->load->view('createcarousel', $error);
-        } else {
 
-            if ($this->form_validation->run() == FALSE) {
-                //it hasn't been ran or there are validation errorrs
-                $this->load->view('createcarousel');
+
+        if ($this->form_validation->run() == FALSE) {
+            //it hasn't been ran or there are validation errorrs
+
+            $this->load->view('createcarousel');
+        } else {
+            if (!$this->upload->do_upload('userfile')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('createcarousel', $error);
             } else {
 
 
@@ -59,6 +61,24 @@ class Carosel extends CI_Controller {
         $data["rtnbody"] = $rtnvals["body"];
         $this->load->view("viewmenu", $data);
     }
+
+    public function deletethiscarousel() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $res["msg"]=$this->carouselmodel->deletecarousel($this->uri->segment(3));
+        $this->load->view("carouselsuccess", $res);
+    }
+
+    public function editthiscarousel() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $rtnvals = $this->carouselmodel->editcarousel($this->uri->segment(3));
+        $this->load->view("editcarousels", $rtnvals);
+    }
+
+   
 
 }
 

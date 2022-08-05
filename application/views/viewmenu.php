@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<style type='text/css'>
+    
+    td{word-wrap:anywhere}
+</style>
 <html lang="en">
     <?php $this->load->view("load/header_main") ?>
     <body class="hold-transition sidebar-mini">
@@ -17,7 +21,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Students Update</h1>
+                                <h1>Menu Update</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -34,10 +38,10 @@
                     <div class="container-fluid">
                          <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Details of registered students</h3>
+                <h3 class="card-title">Details of Menus present</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
+              <div class="card-body" style="width:100%;">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <?php echo $rtnhead?>

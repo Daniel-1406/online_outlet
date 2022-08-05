@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-//    public function __construct() {
-//        parent::__construct();
-//        $this->load->library('session');
-//    }
+    public function __construct() {
+        parent::__construct();
+        $this->load->library('session');
+    }
 
     public function index() {
         //$this->welcomemodel->setuptables();
@@ -25,9 +25,51 @@ class Welcome extends CI_Controller {
     }
 
     public function schooldetails() {
-        $data["state"]=  $this->welcomemodel->getnigeriastates();
-        $data["school"]=  $this->welcomemodel->getschoolinformation();
-        $this->load->view("schooldetails",$data);
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $data["state"] = $this->welcomemodel->getnigeriastates();
+        $data["school"] = $this->welcomemodel->getschoolinformation();
+        $this->load->view("schooldetails", $data);
+    }
+
+    public function socialmedia() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $data["social"] = $this->welcomemodel->getsocialmedialinks();
+        $this->load->view("socialmedia", $data);
+    }
+
+    public function openevent() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $this->load->view("event");
+    }
+
+    public function openfacility() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $this->load->view("facility");
+    }
+
+    public function opennews() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $this->load->view("news");
+    }
+
+    public function updatesocialmedia() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $this->form_validation->set_rules("twitter", "Twitter link", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("facebook", "Facebook Link", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("instagram", "Istagram Link", "required|trim|min_length[3]");
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->socialmedia();
+        } else {
+            $lat["msg"] = $this->welcomemodel->socialmedia();
+            $this->load->view("socialmediafeedback", $lat);
+        }
     }
 
     public function updateschoolinfo() {
@@ -45,10 +87,10 @@ class Welcome extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->schooldetails();
         } else {
-            $lat["msg"] = $this->welcomemodel->registerschoolinfo(); 
-                $this->load->view("schoolupdatefeedback", $lat);
+            $lat["msg"] = $this->welcomemodel->registerschoolinfo();
+            $this->load->view("schoolupdatefeedback", $lat);
         }
-        }
+    }
 
     public function openstudents() {
         if ($this->session->userdata("admin") == "")
@@ -73,7 +115,6 @@ class Welcome extends CI_Controller {
 
         $rtnvals = $this->students->editstudent($this->uri->segment(3));
         $this->load->view("editstudents", $rtnvals);
-        
     }
 
     public function updatestudents() {
@@ -89,8 +130,8 @@ class Welcome extends CI_Controller {
 
 
         if ($this->form_validation->run() == FALSE) {
-             $rtnvals = $this->students->editstudent($this->input->post("studentid"));
-        $this->load->view("editstudents", $rtnvals);
+            $rtnvals = $this->students->editstudent($this->input->post("studentid"));
+            $this->load->view("editstudents", $rtnvals);
         } else {
             $values["surname"] = $this->input->post("surname");
             $values["firstname"] = $this->input->post("firstname");

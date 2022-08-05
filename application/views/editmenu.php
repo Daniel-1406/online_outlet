@@ -37,7 +37,7 @@
                             <div class="col-md-6"> 
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title-danger">Create Menu</h3>
+                                        <h3 class="card-title-danger">Update Menu</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
@@ -50,41 +50,38 @@
                                     <div class="card-body">
                                         <div class="form-group">  
                                             <label for="exampleInputEmail1">Menu name</label>
-<?php print form_input("name", set_value("name", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter menu name"') ?>
+                                            <?php print form_input("name", set_value("name", $name), 'class="form-control" id="exampleInputEmail1" placeholder="Enter menu name"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Menu url</label>
-<?php print form_input("url", set_value("url", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter menu url"') ?>
+                                            <?php print form_input("url", set_value("url", $url), 'class="form-control" id="exampleInputEmail1" placeholder="Enter menu url"') ?>
                                             <!--<input type="text" >-->
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Orientation</label>
-                                            <select name="orientation" class="custom-select rounded-0" id="exampleSelectRounded0">
-                                                <?php echo $menu;?>
-                                            </select>
-                                        </div>
+   
 
                                         <div class="form-group">
                                             <label for="exampleSelectRounded0">Numbering</label>
-                                            <select name="numbering" class="custom-select rounded-0" id="exampleSelectRounded0">
-                                                <option>1</option>
-                                                <option>2</option> 
-                                                <option>3</option> 
-                                                <option>4</option> 
-                                                <option>5</option> 
-                                                <option>6</option> 
-                                                <option>7</option> 
-                                                <option>8</option> 
-                                                <option>9</option> 
-                                                <option>10</option> 
-                                            </select>
+                                            <?php print form_dropdown("numbering", array("select" => "-numbering-", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7", "8" => "8", "9" => "9", "10" => "10"), set_value('numbering', $numbering), 'class="custom-select rounded-0" id="exampleSelectRounded0"') ?>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleSelectRounded0">Status</label>
-                                            <select name="status" class="custom-select rounded-0" id="exampleSelectRounded0">
-                                                <option>Enable</option>
-                                                <option>Disable</option> 
+                                            <?php print form_dropdown("status", array("select" => "-status-", "Enable" => "Enable", "Disable" => "Disable"), set_value('status', $status), 'class="custom-select rounded-0" id="exampleSelectRounded0"') ?>
+
+                                        </div>
+                                        <?echo $menu?>
+                                        <div class="form-group">
+                                            <label for="exampleSelectRounded0">Orientation</label>
+                                            <?php print form_dropdown("status",$menu , 'class="custom-select rounded-0" id="exampleSelectRounded0"') ?>
+
+                                        </div>
+                                        
+                                        
+                                         <div class="form-group">
+                                            <label for="exampleInputEmail1">Orientation</label>
+                                            <select name="orientation" class="custom-select rounded-0" id="exampleSelectRounded0">
+                                                <?php echo $menu;?>
                                             </select>
                                         </div>
                                     </div>
@@ -92,10 +89,10 @@
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-<?php print form_submit("Submit", "Create Menu", 'class="btn btn-primary"') ?>
+                                        <?php print form_submit("Submit", "Update Menu", 'class="btn btn-primary"') ?>
 
                                     </div>
-<?php print form_close(); ?>
+                                    <?php print form_close(); ?>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +101,7 @@
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
-<?php $this->load->view("load/footer") ?>
+            <?php $this->load->view("load/footer") ?>
 
 
         </div>

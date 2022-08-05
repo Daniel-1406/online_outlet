@@ -29,7 +29,6 @@ class Menuci extends CI_Controller {
         $this->form_validation->set_rules("status", "Status", "required|trim");
         $this->form_validation->set_rules("orientation", "Orientation", "required|trim");
         $this->form_validation->set_rules("numbering", "Numbering", "required|trim");
-//        $this->form_validation->set_rules("password", "Password", "required|trim|alpha_numeric|min_length[3]");
 
         if ($this->form_validation->run() == FALSE) {
             $main["menu"] = $this->menumodel->getmainmenu();
@@ -41,6 +40,24 @@ class Menuci extends CI_Controller {
 
             $this->load->view('menusuccess', $rec);
         }
+    }
+
+    public function deletethismenu() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $res["msg"] = $this->menumodel->deletemenu($this->uri->segment(3));
+        $this->load->view("menusuccess", $res);
+    }
+
+    public function editthismenu() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $rtnvals = $this->menumodel->editmenu($this->uri->segment(3));
+        $rtnvals["menu"] = $this->menumodel->mainmenuforupdate();
+
+        $this->load->view("editmenu",$rtnvals);
     }
 
 }

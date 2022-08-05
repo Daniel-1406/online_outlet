@@ -50,46 +50,46 @@
                                     <div class="card-body">
                                         <div class="form-group">  
                                             <label for="exampleInputEmail1">Surname</label>
-<?php print form_input("surname", set_value("surname",$surname), 'class="form-control" id="exampleInputEmail1" placeholder="Enter surname"') ?>
+                                            <?php print form_input("surname", set_value("surname", $surname), 'class="form-control" id="exampleInputEmail1" placeholder="Enter surname"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">First Name</label>
-<?php print form_input("firstname", set_value("firstname",$firstname), 'class="form-control" id="exampleInputEmail1" placeholder="Enter firstname"') ?>
+                                            <?php print form_input("firstname", set_value("firstname", $firstname), 'class="form-control" id="exampleInputEmail1" placeholder="Enter firstname"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Username</label>
-<?php print form_input("username", set_value("username", $username), 'class="form-control" id="exampleInputEmail1" placeholder="Enter username"') ?>
+                                            <?php print form_input("username", set_value("username", $username), 'class="form-control" id="exampleInputEmail1" placeholder="Enter username"') ?>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Password</label>
-<?php print form_password("pass", set_value("pass",''), 'class="form-control" id="exampleInputEmail1" placeholder="Enter password"') ?>
+                                            <?php print form_password("pass", set_value("pass", ''), 'class="form-control" id="exampleInputEmail1" placeholder="Enter password"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Confirm Password</label>
-<?php print form_password("confirm_pass", set_value("confirm_pass"), 'class="form-control" id="exampleInputEmail1" placeholder="Confirm password"') ?>
+                                            <?php print form_password("confirm_pass", set_value("confirm_pass"), 'class="form-control" id="exampleInputEmail1" placeholder="Confirm password"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleSelectRounded0">Gender</label>
-                                            <?php print form_dropdown("gender",array("select"=>"-select gender-","Male"=>"Male","Female"=>"Female"),set_value('gender',$gender),'class="custom-select rounded-0" id="exampleSelectRounded0"')?>
+                                            <?php print form_dropdown("gender", array("select" => "-select gender-", "Male" => "Male", "Female" => "Female"), set_value('gender', $gender), 'class="custom-select rounded-0" id="exampleSelectRounded0"') ?>
 <!--                                            <select name="gender" class="custom-select rounded-0" id="exampleSelectRounded0">
                                                 <option>Male</option>
                                                 <option>Female</option> 
                                             </select>-->
                                         </div>
-<?php print form_hidden("studentid", set_value("studentid",$studentid), 'class="form-control" id="exampleInputEmail1"') ?>
+                                        <?php print form_hidden("studentid", set_value("studentid", $studentid), 'class="form-control" id="exampleInputEmail1"') ?>
                                     </div>
 
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                <?php print form_submit("Submit", "Update", 'class="btn btn-primary"') ?>
+                                        <?php print form_submit("Submit", "Update", 'class="btn btn-primary"') ?>
 
                                     </div>
-<?php print form_close(); ?>
+                                    <?php print form_close(); ?>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
-<?php $this->load->view("load/footer") ?>
+            <?php $this->load->view("load/footer") ?>
 
 
         </div>

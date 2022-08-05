@@ -21,15 +21,14 @@ class Carouselmodel extends CI_Model {
         }
     }
 
-    
-    function getmajorcolor(){
-        $q= $this->db->query("select majorcolour from schoolinformation ");
-        $color="";
-        foreach($q->result() as $rows){
+    function getmajorcolor() {
+        $q = $this->db->query("select majorcolour from schoolinformation ");
+        $color = "";
+        foreach ($q->result() as $rows) {
             $color.=$rows->majorcolour;
         }
-           return $color; 
-        }
+        return $color;
+    }
 
     function displaycarousel() {
         $q = $this->db->query("select * from carousel where deleted='f' order by orientation");
@@ -37,8 +36,8 @@ class Carouselmodel extends CI_Model {
         $slide = "";
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $res) {
-                $majorcolor=$this->getmajorcolor();
-                $carousel.="<figure id = 'slide-" . $res->carouselid . "'><a class = 'view' href = '#'><img src = './images/" . $res->photo . "' alt = ''></a>
+                $majorcolor = $this->getmajorcolor();
+                $carousel.="<figure id = 'slide-" . $res->carouselid . "' style='height:100%;'><a class = 'view' href = '#'><img src = './images/" . $res->photo . "' alt = '' width='20px' height='20px'></a>
             <figcaption>
             <h2>" . $res->heading . "</h2>
             <p>" . $res->description . "</p>
@@ -54,7 +53,7 @@ class Carouselmodel extends CI_Model {
         }
         return $content;
     }
-     
+
     function getcarosel() {
 
         $query = $this->db->query("select * from carousel where deleted='f'");
@@ -67,7 +66,7 @@ class Carouselmodel extends CI_Model {
             $form_delete = anchor(base_url('index.php/welcome/deletethiscarousel/' . $row->id), form_button('button', 'Delete'));
             $form_edit = anchor(base_url('index.php/welcome/editthiscarousel/' . $row->id), form_button('button', 'Edit'));
             $form_close = form_close();
-            $body.="<tr><td>" . $row->surname . "</td><td>" . $row->firstname . "</td><td>" . $row->gender . "</td><td>" . $row->regtime . "</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
+            $body.="<tr><td>$row->surname</td><td>$row->firstname</td><td>" . $row->gender . "</td><td>" . $row->regtime . "</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
         }
         $db_content["head"] = $head;
         $db_content["body"] = $body;
@@ -81,13 +80,13 @@ class Carouselmodel extends CI_Model {
 
         foreach ($query->result() as $row) {
             $form_open = form_open('welcome/delete');
-            $form_hidden = ""; //form_input('del',set_value($row->id,$row->id));
-            $form_delete1 = anchor(base_url('index.php/welcome/deletethisstudent/' . $row->carouselid), form_button('button', 'Delete'));
-            $form_edit = "<a class='btn btn-info btn-sm' href='index.php/welcome/editthisstudent/$row->id'><i class='fas fa-pencil-alt'></i>Edit </a>";
-            $form_edit1 = anchor(base_url('index.php/welcome/editthisstudent/' . $row->carouselid), form_button('button', 'Edit'));
-            $form_delete = "<a class='btn btn-danger btn-sm' href='deletethismember/$row->id'><i class='fas fa-trash'> </i>Delete</a>";
+            //$form_hidden = ""; //form_input('del',set_value($row->id,$row->id));
+            //$form_delete1 = anchor(base_url('index.php/welcome/deletethisstudent/' . $row->carouselid), form_button('button', 'Delete'));
+            $form_edit = "<a class='btn btn-info btn-sm' href='editthiscarousel/$row->carouselid'><i class='fas fa-pencil-alt'></i>Edit </a>";
+            //$form_edit1 = anchor(base_url('index.php/welcome/editthisstudent/' . $row->carouselid), form_button('button', 'Edit'));
+            $form_delete = "<a class='btn btn-danger btn-sm' href='deletethiscarousel/$row->carouselid'><i class='fas fa-trash'> </i>Delete</a>";
             $form_close = form_close();
-            $body.="<tr><td>$row->name</td><td><img height='6' src='base_url('images/1')images/" . $row->photo . "' alt='' /></td><td>" . $row->heading . "</td><td>" . $row->description . "</td><td>$row->url</td><td>$row->orientation</td><td>$row->status</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
+            $body.="<tr><td>$row->name</td><td><img width='150px' height='150px' src='".base_url()."/images/" . $row->photo . "' alt='' /></td><td>" . $row->heading . "</td><td>" . $row->description . "</td><td>$row->url</td><td>$row->orientation</td><td>$row->status</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
         }
         $db_content["head"] = $head;
         $db_content["body"] = $body;
@@ -95,6 +94,30 @@ class Carouselmodel extends CI_Model {
     }
 
     function deletecarousel($id) {
-        $this->db->query("update carousel set deleted='t' where id=$id");
+        if ($this->db->query("update carousel set deleted='t' where carouselid=$id")) {
+            return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Carousel deleted successfully!</span>";
+        } else {
+            return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Error!,Unable to delete carousel</span>";
+        }
     }
+
+    function editcarousel($id) {
+        $query = $this->db->query("select * from carousel where carouselid=$id");
+        $db_content = array();
+        foreach ($query->result() as $row) {
+            $db_content["name"] = $row->name;
+            $db_content["photo"] = $row->photo;
+            $db_content["heading"] = $row->heading;
+            $db_content["description"] = $row->description;
+            $db_content["url"] = $row->url;
+            $db_content["orientation"] = $row->orientation;
+            $db_content["status"] = $row->status;
+            $db_content["carouselid"] = $id;
+        }
+
+
+
+        return $db_content;
+    }
+
 }
