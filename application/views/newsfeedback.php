@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php $this->load->view("load/header_main") ?>
+
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             <!-- Navbar -->
@@ -11,54 +12,75 @@
             <?php $this->load->view("load/sidelinks") ?>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
+            <div class="content-wrapper" style="background-color:white;">
                 <!-- Content Header (Page header) -->
-                <section class="content-header">
+                <section class="content-header" style="background-color:white;">
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Contact Registration</h1>
+                                <h1><b>News Information Feedback</b></h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                                     <li class="breadcrumb-item active">General Form</li>
                                 </ol>
-                            </div>
+                            </div> 
                         </div>
                     </div><!-- /.container-fluid -->
                 </section>
 
                 <!-- Main content -->
-                <section class="content"> 
+                <section class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <!-- left column -->
-                            <div class="col-md-6"> 
+                            <div class="col-md-12">
+                                <!-- general form elements -->
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title">Status</h3>
-                                    </div> 
-                                    <?php print $msg ?> 
-                                    <a href="<?php echo base_url(); ?>index.php/carosel/createcarousel" class="btn btn-warning">Create carousel</a>
-                                    <a href="<?php echo base_url(); ?>index.php/carosel/viewcarousel" class="btn btn-info">View registered Carousel</a>
+                                        <h3 class="card-title">Feedback</h3>
+                                    </div>
 
+
+
+                                    <form>
+                                        <div class="card-body">
+
+                                            <?php
+                                                echo  $msg ;
+                                            ;
+                                            ?> 
+
+
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                         <div class="card-footer ">
+                                            <a href="<?php echo base_url(); ?>index.php/welcome/opennews"><button type="button" class="btn btn btn-secondary "><i class="fa fa-bell"></i>Add a new event information</button></a>
+                                             <a href="<?php echo base_url(); ?>index.php/newsci/viewnews"><button type="button" class="btn btn btn-info"><i class="fa fa-bank"></i>View Event information</button></a>
+                                             <a href="<?php echo base_url(); ?>index.php/academics"><button type="button" class="btn btn btn-danger "><i class="fa fa-bell"></i>Visit Site</button></a>
+                                        </div>
+                                    </form>
                                 </div>
-                            </div>
+                                <!-- /.row -->
+                            </div><!-- /.container-fluid -->
+                            </section>
+
+
+
+
+
+
+
+
+
+                            <!-- /.content -->
                         </div>
+                        <!-- /.content-wrapper -->
+                        <?php $this->load->view("load/footer") ?>
+
                     </div>
+                    <!-- ./wrapper -->
 
-
-
-                </section>
-                <!-- /.content -->
-            </div>
-            <!-- /.content-wrapper -->
-            <?php $this->load->view("load/footer") ?>
-
-
-        </div>
-        <!-- ./wrapper -->
-
-    </body>
-</html>
+                    </body>
+                    </html>

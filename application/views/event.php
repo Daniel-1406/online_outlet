@@ -6,15 +6,15 @@
             <!-- Navbar -->
             <?php $this->load->view("load/header") ?>
             <!-- /.navbar -->
-             <link rel="stylesheet" href="<?php echo base_url() ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="<?php echo base_url() ?>plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-            
+            <link rel="stylesheet" href="<?php echo base_url() ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+            <!-- Bootstrap Color Picker -->
+            <link rel="stylesheet" href="<?php echo base_url() ?>plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+            <!-- Tempusdominus Bootstrap 4 -->
+            <link rel="stylesheet" href="<?php echo base_url() ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+            <!-- Select2 -->
+            <link rel="stylesheet" href="<?php echo base_url() ?>plugins/select2/css/select2.min.css">
+            <link rel="stylesheet" href="<?php echo base_url() ?>plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
             <link rel="stylesheet" href="<?php echo base_url() ?>plugins/daterangepicker/daterangepicker.css">
             <!-- Bootstrap4 Duallistbox -->
             <link rel="stylesheet" href="<?php echo base_url() ?>plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
@@ -60,12 +60,13 @@
                                     <!-- form start -->
                                     <?php
                                     print form_open_multipart("eventci/do_upload");
-                                    print "<span style='color:red'>" . validation_errors() . "</span>";
+                                    echo '<div class="bg-danger" style="text-align:center;"><b>' . validation_errors() . '</b></div>';
                                     if (isset($error))
-                                        print "<span style='color:red; text-align:center; font-weight:bold; padding:1px;'>" . $error . "</span>";
+                                        echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $error . '</b></div>';
+
 
                                     if (isset($pass_err))
-                                        echo $pass_err;
+                                        echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $pass_err . '</b></div>';
                                     ?>
                                     <div class="card-body">
                                         <div class="form-group">  
@@ -76,7 +77,7 @@
                                         <div class="form-group">
                                             <label>Event Date:</label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="date"/>
+                                                <?php print form_input("date", set_value("date", ""), 'class="form-control datetimepicker-input" data-target="#reservationdate"') ?>
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>

@@ -11,7 +11,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?php print base_url() ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="<?php print base_url() ?>/images/dnl_(2).jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block"><?php echo strtoupper($this->session->userdata("admin")); ?></a>
@@ -51,9 +51,12 @@
                     </ul>
                 </li>
 
+
+
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
+                        <i class="nav-icon far fa-plus-square"></i>
                         <p>
                             Features
                             <i class="fas fa-angle-left right"></i>
@@ -61,26 +64,118 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/welcome/openfacility" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Facility</p>
+                                <p>
+                                    Facility
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url(); ?>index.php/welcome/openfacility" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add facility</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url(); ?>index.php/facility/viewfacility" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Manage Facilities</p>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Events
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url(); ?>index.php/welcome/openevent" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Events</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url(); ?>index.php/eventci/viewevent" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Manage Event</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    News
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url(); ?>index.php/welcome/opennews" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add News</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url(); ?>index.php/newsci/viewnews" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Manage News</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Gallery
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?php echo base_url(); ?>index.php/gallery/upload_photos" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Upload photos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/welcome/openevent" class="nav-link">
+                            <a href="<?php echo base_url(); ?>index.php/gallery/viewgallery" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Event</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/welcome/opennews" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>News</p>
+                                <p>Mange photos</p>
                             </a>
                         </li>
 
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="<?php print base_url() ?>index.php/custompage/opencustompages" class="nav-link">
+                        <i class="far fa-dot-circle nav-icon"></i>
+                        <p>Create Custom Pages</p>
+                    </a>
+                </li>
+
+
+
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">

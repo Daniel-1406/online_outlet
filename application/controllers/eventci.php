@@ -39,6 +39,32 @@ class Eventci extends CI_Controller {
             }
         }
     }
+    
+    
+    public function viewevent() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $rtnvals = $this->eventmodel->viewevent();
+        $data["rtnhead"] = $rtnvals["head"];
+        $data["rtnbody"] = $rtnvals["body"];
+        $this->load->view("viewmenu", $data);
+    }
+    
+        public function deletethisevent() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $res["msg"]=$this->eventmodel->deleteevent($this->uri->segment(3));
+        $this->load->view("eventfeedback", $res);
+    }
+
+    public function editthisevent() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $rtnvals = $this->eventmodel->editevent($this->uri->segment(3));
+        $this->load->view("editevent", $rtnvals);
+    }
 
 }
 ?>

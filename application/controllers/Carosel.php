@@ -35,14 +35,14 @@ class Carosel extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             //it hasn't been ran or there are validation errorrs
 
-            $this->load->view('createcarousel');
+            $this->load->view('editcarousels');
         } else {
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());
-                $this->load->view('createcarousel', $error);
+
+                $this->load->view('editcarousels', $error);
             } else {
-
-
+                
                 $data = $this->upload->data();
                 $upload = array('upload_data' => $data);
 
@@ -66,7 +66,7 @@ class Carosel extends CI_Controller {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
 
-        $res["msg"]=$this->carouselmodel->deletecarousel($this->uri->segment(3));
+        $res["msg"] = $this->carouselmodel->deletecarousel($this->uri->segment(3));
         $this->load->view("carouselsuccess", $res);
     }
 
@@ -77,8 +77,6 @@ class Carosel extends CI_Controller {
         $rtnvals = $this->carouselmodel->editcarousel($this->uri->segment(3));
         $this->load->view("editcarousels", $rtnvals);
     }
-
-   
 
 }
 

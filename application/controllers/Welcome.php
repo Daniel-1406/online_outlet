@@ -12,6 +12,8 @@ class Welcome extends CI_Controller {
     public function index() {
         //$this->welcomemodel->setuptables();
         $this->load->view('login.php');
+        
+        
     }
 
     public function login() {
@@ -55,6 +57,12 @@ class Welcome extends CI_Controller {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
         $this->load->view("news");
+    }
+
+    public function opencustompages() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $this->load->view("createcustompages");
     }
 
     public function updatesocialmedia() {

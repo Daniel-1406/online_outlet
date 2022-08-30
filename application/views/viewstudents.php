@@ -32,32 +32,49 @@
                 <!-- Main content -->
                 <section class="content"> 
                     <div class="container-fluid">
-                         <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Details of registered students</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <?php echo $rtnhead?>
-                  </thead>
-                  <tbody>
-                   <?php echo $rtnbody?>
-                  </tbody>
-                  <tfoot>
-                   <?php echo $rtnhead?>
-                  </tfoot>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Details of registered students</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <?php echo $rtnhead ?>
+                                    </thead>
+                                    <tbody>
+                                        <?php echo $rtnbody ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <?php echo $rtnhead ?>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                     </div>
                 </section>
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
             <?php $this->load->view("load/footer") ?>
+            <script>
+                $(function() {
+                    $("#example1").DataTable({
+                        "responsive": true, "lengthChange": false, "autoWidth": false,
+                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                    $('#example2').DataTable({
+                        "paging": true,
+                        "lengthChange": false,
+                        "searching": false,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false,
+                        "responsive": true,
+                    });
+                });
+            </script>
 
 
         </div>

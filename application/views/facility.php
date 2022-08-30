@@ -43,13 +43,13 @@
                                     <!-- form start -->
                                     <?php
                                     print form_open_multipart("facility/do_upload");
-                                    print "<span style='color:red'>" . validation_errors() . "</span>";
+                                    echo '<div class="bg-danger" style="text-align:center;"><b>' . validation_errors() . '</b></div>';
                                     if (isset($error))
-                                        print "<span style='color:red'>" . $error . "</span>";
+                                        echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $error . '</b></div>';
 
 
                                     if (isset($pass_err))
-                                        echo $pass_err;
+                                        echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $pass_err . '</b></div>';
                                     ?>
                                     <div class="card-body">
                                         <div class="form-group">  
@@ -64,6 +64,7 @@
                                                     <input type="file" class="custom-file-input" name="userfile" id="exampleInputFile">
                                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                 </div>
+                                                
 
                                             </div>
                                         </div>

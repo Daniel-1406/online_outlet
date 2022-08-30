@@ -62,7 +62,6 @@ class Carouselmodel extends CI_Model {
 
         foreach ($query->result() as $row) {
             $form_open = form_open('welcome/delete');
-            $form_hidden = ""; //form_input('del',set_value($row->id,$row->id));
             $form_delete = anchor(base_url('index.php/welcome/deletethiscarousel/' . $row->id), form_button('button', 'Delete'));
             $form_edit = anchor(base_url('index.php/welcome/editthiscarousel/' . $row->id), form_button('button', 'Edit'));
             $form_close = form_close();
@@ -86,7 +85,7 @@ class Carouselmodel extends CI_Model {
             //$form_edit1 = anchor(base_url('index.php/welcome/editthisstudent/' . $row->carouselid), form_button('button', 'Edit'));
             $form_delete = "<a class='btn btn-danger btn-sm' href='deletethiscarousel/$row->carouselid'><i class='fas fa-trash'> </i>Delete</a>";
             $form_close = form_close();
-            $body.="<tr><td>$row->name</td><td><img width='150px' height='150px' src='".base_url()."/images/" . $row->photo . "' alt='' /></td><td>" . $row->heading . "</td><td>" . $row->description . "</td><td>$row->url</td><td>$row->orientation</td><td>$row->status</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
+            $body.="<tr><td>$row->name</td><td><img width='150px' height='150px' src='" . base_url() . "/images/" . $row->photo . "' alt='' /></td><td>" . $row->heading . "</td><td>" . $row->description . "</td><td>$row->url</td><td>$row->orientation</td><td>$row->status</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
         }
         $db_content["head"] = $head;
         $db_content["body"] = $body;
@@ -118,6 +117,15 @@ class Carouselmodel extends CI_Model {
 
 
         return $db_content;
+    }
+
+    function updatecarousel($name = array()) {
+        $this->db->where('carouselid', $name['carouselid']);
+        if ($this->db->update("carousel", $name)) {
+            return "<span style='color:green;'>Carousel Information Updated successfully!</span>";
+        } else {
+            return "<span style='color:;red'>Unable to update carousel information!<br>Try again!</span>";
+        }
     }
 
 }

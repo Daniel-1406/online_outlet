@@ -38,6 +38,32 @@ class facility extends CI_Controller {
             }
         }
     }
+    
+    
+    public function viewfacility() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+        $rtnvals = $this->facilitymodel->viewfacility();
+        $data["rtnhead"] = $rtnvals["head"];
+        $data["rtnbody"] = $rtnvals["body"];
+        $this->load->view("viewmenu", $data);
+    }
+    
+        public function deletethisfacility() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $res["msg"]=$this->facilitymodel->deletefacility($this->uri->segment(3));
+        $this->load->view("facilityfeedback", $res);
+    }
+
+    public function editthisfacility() {
+        if ($this->session->userdata("admin") == "")
+            redirect("welcome/");
+
+        $rtnvals = $this->facilitymodel->editfacility($this->uri->segment(3));
+        $this->load->view("editfacility", $rtnvals);
+    }
 
 }
 ?>

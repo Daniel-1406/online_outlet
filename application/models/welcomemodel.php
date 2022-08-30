@@ -16,7 +16,11 @@ class Welcomemodel extends CI_Model {
         $val["phonenumber"] = $this->input->post("phonenumber");
         $this->db->query("truncate schoolinformation");
         $this->db->insert("schoolinformation", $val);
-        return "School information updated successfully!";
+        return '<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> Success!</h5>
+                  School Information Updated Successfully ...
+                </div>';
     }
 
     function socialmedia() {
@@ -25,7 +29,11 @@ class Welcomemodel extends CI_Model {
         $val["instagram"] = $this->input->post("instagram");
         $this->db->query("truncate socialmedia");
         $this->db->insert("socialmedia", $val);
-        return "Social Media Links updated successfully!";
+        return '<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> Success!</h5>
+                  Social Media Links Updated Successfully ...
+                </div>';
     }
 
     function getnigeriastates() {

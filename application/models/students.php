@@ -48,7 +48,7 @@ class students extends CI_Model {
         if ($this->db->replace("students", $data)) {
             return "<span style='color:green;'>Student's Information Updated successfully!</span>";
         } else {
-            return "<span style='color:;red'>Unable to update student's information!<br>Try again!</span>";
+            return "<span style='color:red;'>Unable to update student's information!<br>Try again!</span>";
         }
     }
 

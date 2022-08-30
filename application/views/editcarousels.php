@@ -42,7 +42,7 @@
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <?php
-                                    print form_open_multipart("carosel/do_upload");
+                                    print form_open_multipart("caroselupdate/do_upload");
                                     print "<span style='color:red'>" . validation_errors() . "</span>";
                                     if (isset($error))
                                         print "<span style='color:red'>" . $error . "</span>";
@@ -56,7 +56,7 @@
                                              
                                         </div>
                                         <div class="form-group">  
-                                            <label for="exampleInputEmail1">Carousel name</label>
+                                            <label for="exampleInputEmai1">Carousel name</label>
                                             <?php print form_input("name", set_value("name", $name), 'class="form-control" id="exampleInputEmail1" placeholder="Enter carousel name"') ?>
                                             <!--<input type="text" >-->
                                         </div>
@@ -102,6 +102,7 @@
                                                 <option>Female</option> 
                                             </select>-->
                                         </div>
+                                        <?php print form_hidden("id", set_value("id", $carouselid), 'class="form-control" id="exampleInputEmail1"') ?>
                                     </div>
 
                                     <!-- /.card-body -->

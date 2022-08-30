@@ -120,9 +120,9 @@ class Menumodel extends CI_Model {
 
     function deletemenu($id) {
         if ($this->db->query("update menu set deleted='t' where id=$id")) {
-            return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Menu Updated successfully!</span>";
+            return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Menu Deleted successfully!</span>";
         } else {
-            return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Unable to update Menu!</span>";
+            return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Unable to delete Menu!</span>";
         }
     }
 

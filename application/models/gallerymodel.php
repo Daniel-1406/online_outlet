@@ -2,34 +2,85 @@
 
 class gallerymodel extends CI_Model{
     
-//    var $gallery_path;
-//    
-//    function Gallerymodel(){
-//        
-//        parent::Model();
-//        $this->gallery_path=realpath(APPPATH."../images");
-//    }
-//    
-//    function do_upload(){
-//        
-//        $config=array(
-//            "allowed_types"=>"jpg|jpeg|png",
-//            "upload_path"=>$this->gallery_path
-//            
-//        );
-//        $this->load->library("upload",$config);
-//        //performing the upload itself
-//        $this->upload->do_upload();
-//    }
+
     
-    function saveimage($nameimage){
-        $data["surname"]="demo1";
-        $data["firstname"]="demo1";
-        $data["username"]="demo1";
-        $data["gender"]="demo1";
-        $data["picture"]=$nameimage;
-        $this->db->insert("students",$data);
+    
+     function insert($imagename) {
+
+        $field["title"] = $this->input->post("title");
+        $field["photo"] = $imagename;
+        $field["numbering"] = $this->input->post("numbering");
+
+
+        if ($this->db->insert("gallery", $field)) {
+            return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Action  successful!</span>";
+        } else {
+            return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Error!,Try again!</span>";
+        }
     }
     
+      function viewgallery() {
+        $query = $this->db->query("select * from gallery where deleted='f' ");
+        $head = "<th>Photo</th><th>Title</th><th>Order Number</th><th>EDIT</th><th>DELETE</th>";
+        $body = "";
+
+        foreach ($query->result() as $row) {
+            $form_open = form_open('welcome/delete');
+            //$form_hidden = ""; //form_input('del',set_value($row->id,$row->id));
+            //$form_delete1 = anchor(base_url('index.php/welcome/deletethisstudent/' . $row->carouselid), form_button('button', 'Delete'));
+            $form_edit = "<a class='btn btn-info btn-sm' href='editthisgallery/$row->id'><i class='fas fa-pencil-alt'></i>Edit </a>";
+            //$form_edit1 = anchor(base_url('index.php/welcome/editthisstudent/' . $row->carouselid), form_button('button', 'Edit'));
+            $form_delete = "<a class='btn btn-danger btn-sm' href='deletethisgallery/$row->id'><i class='fas fa-trash'> </i>Delete</a>";
+            $form_close = form_close();
+            $body.="<tr><td><img style='width:100%;' height='150px' src='".base_url()."/images/" . $row->photo . "' alt=$row->title /></td><td>$row->title</td><td>" . $row->numbering . "</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
+        }
+        $db_content["head"] = $head;
+        $db_content["body"] = $body;
+        return $db_content;
+    }
+    
+    
+    function deletegallery($id) {
+        if ($this->db->query("update gallery set deleted='t' where id=$id")) {
+            return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Photo deleted successfully!</span>";
+        } else {
+            return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Error!,Unable to delete photo</span>";
+        }
+    }
+
+    function editgallery($id) {
+        $query = $this->db->query("select * from gallery where id=$id");
+        $db_content = array();
+        foreach ($query->result() as $row) {
+            $db_content["title"] = $row->title;
+            $db_content["photo"] = $row->photo;
+            $db_content["numbering"] = $row->numbering;
+            $db_content["id"] = $id;
+        }
+
+
+
+        return $db_content;
+    }
+    
+    function getitems(){
+        $query=$this->db->query("select * from gallery where deleted='f' order by numbering");
+        $photos="";
+        $x=1;
+        foreach($query->result() as $row){
+            if($x%4==0){
+                $photos.="<li class='one_quarter first'><a class='nlb' data-lightbox-gallery='gallery1' href='../../images/$row->photo' title='$row->title'><img class='borderedbox' src = '../../images/" . $row->photo . "' alt='$row->title '></a></li>";
+            }else{
+                $photos.="<li class='one_quarter'><a class='nlb' data-lightbox-gallery='gallery1' href='../../images/$row->photo' title='$row->title'><img class='borderedbox' src='../../images/$row->photo' alt='$row->title '></a></li>";
+            }
+            
+            $x++;
+            
+        }
+        return $photos;
+        
+    }
+
+
 }
 ?>

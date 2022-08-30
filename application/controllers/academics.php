@@ -20,5 +20,22 @@ class  Academics extends CI_controller{
         $this->load->view("frontend/homepage",$features);
     }
     
+    public function gallery(){
+             $this->welcomemodel->setuptables();
+        $menu["menudata"]=$this->menumodel->getpagemenu();
+        $gallery=$this->gallerymodel->getitems();
+        
+        $data=$this->students->getschoolinfo();
+        $features["rtnschoolidentity"]=$data["schoolidentity"];
+        $features["rtnaddress"]=$data["address"];
+        $features["rtnmajorcolor"]=$data["majorcolor"];
+        $features["rtnminorcolor"]=$data["minorcolor"];
+        
+        $features["gallery"]=$gallery;
+        $features["menu"]=$menu["menudata"];
+        $this->load->view("frontend/gallery",$features);
+    }
+    
+    
 }
 ?>
