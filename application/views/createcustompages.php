@@ -72,8 +72,8 @@
                                     ?>
                                     <div class="card-body">
                                         <div class="form-group">  
-                                            <label for="exampleInputEmail1">Custom Page name</label>
-                                            <?php print form_input("name", set_value("name", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Custom Page name ..."') ?>
+                                            <label for="exampleInputEmail1">Page name</label>
+                                            <?php print form_input("name", set_value("name", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Page name ..."') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">
@@ -87,15 +87,18 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Content</label>
-                                            <?php print form_textarea("conent", set_value("content", ""), 'class="form-control" id="summernote" placeholder="Enter event description"') ?>
-                                            <!--<input type="text" >-->
+                                            <textarea name="content" id="summernote">
+                                                     <?php print set_value("content", "");?>
+                                            </textarea>
+                                            <?php // print form_textarea("conent", set_value("content", ""), 'cols=10 class="form-control" id="summernote" placeholder="Enter event description"') ?>
+                                                                          <!--<input type="text" >-->
                                         </div>
                                     </div>
 
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <?php print form_submit("Submit", "Create Custom Page", 'class="btn btn-primary"') ?>
+                                        <?php print form_submit("Submit", "Create Page", 'class="btn btn-primary"') ?>
 
                                     </div>
                                     <?php print form_close(); ?>
@@ -218,8 +221,8 @@
         $("input[data-bootstrap-switch]").each(function() {
             $(this).bootstrapSwitch('state', $(this).prop('checked'));
         })
-        
-         $('#summernote').summernote()
+
+        $('#summernote').summernote()
 
     })
     // BS-Stepper Init
@@ -282,3 +285,6 @@
     }
     // DropzoneJS Demo Code End
 </script>
+<style type="text/css">
+    .note-editor.note-airframe .note-status-output:empty, .note-editor.note-frame .note-status-output:empty, .note-editor.note-frame .note-status-output{height:250px;}
+</style>

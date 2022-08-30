@@ -2,14 +2,14 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Carouselmodel extends CI_Model {
+class Custompagemodel extends CI_Model {
 
-    function insertcarousel() {
+    function insertcustompage() {
 
         $field["name"] = $this->input->post("name");
         $field["date"] = $this->input->post("date");
         $field["content"] = $this->input->post("content");
-        
+       
         if ($this->db->insert("custompages", $field)) {
             return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Carousel created successfully!</span>";
         } else {
