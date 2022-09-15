@@ -25,30 +25,32 @@ class Custompage extends CI_Controller {
             $this->load->view('facilityfeedback', $rec);
         }
     }
+    
+    
 
-    public function viewfacility() {
+    public function viewpages() {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
-        $rtnvals = $this->facilitymodel->viewfacility();
+        $rtnvals = $this->custompagemodel->getpages();
         $data["rtnhead"] = $rtnvals["head"];
         $data["rtnbody"] = $rtnvals["body"];
         $this->load->view("viewmenu", $data);
     }
 
-    public function deletethisfacility() {
+    public function deletethispage() {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
 
-        $res["msg"] = $this->facilitymodel->deletefacility($this->uri->segment(3));
+        $res["msg"] = $this->custompagemodel->deletepage($this->uri->segment(3));
         $this->load->view("facilityfeedback", $res);
     }
 
-    public function editthisfacility() {
+    public function editthispage() {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
 
-        $rtnvals = $this->facilitymodel->editfacility($this->uri->segment(3));
-        $this->load->view("editfacility", $rtnvals);
+        $rtnvals = $this->custompagemodel->editpage($this->uri->segment(3));
+        $this->load->view("editcustompages", $rtnvals);
     }
 
 }

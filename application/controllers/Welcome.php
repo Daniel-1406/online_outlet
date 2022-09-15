@@ -12,8 +12,6 @@ class Welcome extends CI_Controller {
     public function index() {
         //$this->welcomemodel->setuptables();
         $this->load->view('login.php');
-        
-        
     }
 
     public function login() {
@@ -127,15 +125,11 @@ class Welcome extends CI_Controller {
 
     public function updatestudents() {
         if ($this->session->userdata("admin") == "")
-            redirect("welcome/");
-
-        //then validation 
-        $this->form_validation->set_rules("surname", "Surname", "required|trim|min_length[3]|max_length[30]|alpha");
+            $this->form_validation->set_rules("surname", "Surname", "required|trim|min_length[3]|max_length[30]|alpha");
         $this->form_validation->set_rules("firstname", "First Name", "required|trim|min_length[3]|max_length[30]|alpha");
         $this->form_validation->set_rules("username", "Username", "required|trim|min_length[3]|max_length[30]|alpha_numeric");
         $this->form_validation->set_rules("pass", "Password", "required|trim|min_length[3]");
         $this->form_validation->set_rules("gender", "Gender", "required|trim");
-
 
         if ($this->form_validation->run() == FALSE) {
             $rtnvals = $this->students->editstudent($this->input->post("studentid"));

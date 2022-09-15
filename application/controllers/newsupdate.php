@@ -22,7 +22,7 @@ class newsupdate extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             //it hasn't been ran or there are validation errorrs
-            $this->load->view('facility');
+            $this->load->view('editnews');
         } else {
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());
@@ -39,6 +39,8 @@ class newsupdate extends CI_Controller {
             }
         }
     }
+    
+    
     
     
 

@@ -47,14 +47,14 @@
                                     if (isset($error))
                                         print "<span style='color:red'>" . $error . "</span>";
                                     
-                                    if(isset($msg)){
-                                        print $msg;
-                                    }
+                                     if (isset($msg))
+                                        echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $msg . '</b></div>';
+                                   
 
 
                                     if (isset($pass_err))
-                                        echo $pass_err;
-                                    ?>
+                                        echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $pass_err . '</b></div>';
+                                   ?>
                                     <div class="card-body">
 
                                         <div class="form-group">

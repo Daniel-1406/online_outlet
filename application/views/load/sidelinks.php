@@ -11,7 +11,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?php print base_url() ?>/images/dnl_(2).jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="<?php print base_url() ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block"><?php echo strtoupper($this->session->userdata("admin")); ?></a>
@@ -67,7 +67,7 @@
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
-                                    Facility
+                                    Facility Info
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -75,13 +75,13 @@
                                 <li class="nav-item">
                                     <a href="<?php echo base_url(); ?>index.php/welcome/openfacility" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Add facility</p>
+                                        <p>Add Facility Info</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?php echo base_url(); ?>index.php/facility/viewfacility" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Manage Facilities</p>
+                                        <p>Manage Facilities Info</p>
                                     </a>
                                 </li>
 
@@ -100,13 +100,13 @@
                                 <li class="nav-item">
                                     <a href="<?php echo base_url(); ?>index.php/welcome/openevent" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Events</p>
+                                        <p>Add Event Info</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?php echo base_url(); ?>index.php/eventci/viewevent" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Manage Event</p>
+                                        <p>Manage Events Info</p>
                                     </a>
                                 </li>
 
@@ -155,7 +155,7 @@
                         <li class="nav-item">
                             <a href="<?php echo base_url(); ?>index.php/gallery/upload_photos" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Upload photos</p>
+                                <p>Upload photo</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -168,14 +168,29 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php print base_url() ?>index.php/custompage/opencustompages" class="nav-link">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>Create Custom Pages</p>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Pages
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?php echo base_url(); ?>index.php/custompage/opencustompages" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create Page</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url(); ?>index.php/custompage/viewpages" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>View Pages</p>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
-
-
-
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">

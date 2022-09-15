@@ -34,7 +34,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Event</h1>
+                                <h1>News</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -75,7 +75,7 @@
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">
-                                            <label>Event Date:</label>
+                                            <label>News Date:</label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                                 <?php print form_input("date", set_value("date", ""), 'class="form-control datetimepicker-input" data-target="#reservationdate"') ?>
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
@@ -84,8 +84,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Description</label>
-                                            <?php print form_textarea("description", set_value("description", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter event description"') ?>
+                                            <label for="exampleInputEmail1">News Content</label>
+                                            <?php print form_textarea("description", set_value("description", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter News Content"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">

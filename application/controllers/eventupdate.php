@@ -20,8 +20,8 @@ class eventupdate extends CI_Controller {
         $this->load->library('upload', $config);
 
         if ($this->form_validation->run() == FALSE) {
-            //it hasn't been ran or there are validation errorrs
-            $this->load->view('event');
+           $data= $this->eventmodel->editevent($this->input->post($id));
+            $this->load->view('event',$data);
         } else {
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());

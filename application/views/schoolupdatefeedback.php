@@ -56,7 +56,7 @@
                                         <!-- /.card-body -->
 
                                         <div class="card-footer">
-                                             <button type="button" class="btn btn-block btn-secondary btn-lg">Update School Information</button>
+                                             <button type="button" class="btn btn-block btn-danger btn-lg">Back</button>
                                              <button type="button" class="btn btn-block btn-warning btn-lg">Visit Site</button>
                                         </div>
                                     </form>

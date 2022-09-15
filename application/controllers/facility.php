@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class facility extends CI_Controller {
 
-
     public function do_upload() {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
@@ -17,29 +16,25 @@ class facility extends CI_Controller {
         $config['max_size'] = 10000000;
         $config['max_width'] = 200000;
         $config['max_height'] = 200000;
+        $config["encrypt_name"] = TRUE;
+        $config["remove_spaces"] = TRUE;
         $this->load->library('upload', $config);
 
         if ($this->form_validation->run() == FALSE) {
-            //it hasn't been ran or there are validation errorrs
             $this->load->view('facility');
         } else {
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());
                 $this->load->view('facility', $error);
             } else {
-
-
                 $data = $this->upload->data();
-                $upload = array('upload_data' => $data);
-
-                $rec["msg"] = $this->facilitymodel->insertfacility($data["file_name"]);
-
+                $upload = array('upload_data' => $this->upload->data());
+                $rec["msg"] = $this->facilitymodel->insertfacility($this->upload->data(["file_name"]));
                 $this->load->view('facilityfeedback', $rec);
             }
         }
     }
-    
-    
+
     public function viewfacility() {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
@@ -48,12 +43,12 @@ class facility extends CI_Controller {
         $data["rtnbody"] = $rtnvals["body"];
         $this->load->view("viewmenu", $data);
     }
-    
-        public function deletethisfacility() {
+
+    public function deletethisfacility() {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
 
-        $res["msg"]=$this->facilitymodel->deletefacility($this->uri->segment(3));
+        $res["msg"] = $this->facilitymodel->deletefacility($this->uri->segment(3));
         $this->load->view("facilityfeedback", $res);
     }
 
@@ -66,4 +61,5 @@ class facility extends CI_Controller {
     }
 
 }
+
 ?>
