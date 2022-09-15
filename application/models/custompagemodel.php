@@ -16,12 +16,11 @@ class Custompagemodel extends CI_Model {
             return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Error!,Unable to create carousel</span>";
         }
     }
-
+//custom pages
     function getpages() {
         $query = $this->db->query("select * from custompages");
         $head = "<th>Page Title</th><th>Date</th><th>Content</th><th>EDIT</th><th>DELETE</th>";
         $body = "";
-
         foreach ($query->result() as $row) {
             $form_open = form_open('welcome/delete');
             $form_edit = "<a class='btn btn-info btn-sm' href='editthispage/$row->id'><i class='fas fa-pencil-alt'></i>Edit </a>";

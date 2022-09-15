@@ -27,7 +27,7 @@ class Carouselmodel extends CI_Model {
         $slide = "";
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $res) {
-                $majorcolor = $this->getmajorcolor();
+                $majorcolor = $this->welcomemodel->getmajorcolor();
                 $carousel.="<figure id = 'slide-" . $res->carouselid . "' style='height:100%;'><a class = 'view' href = '#'><img src = './images/" . $res->photo . "' alt = '' width='20px' height='20px'></a>
             <figcaption>
             <h2>" . $res->heading . "</h2>

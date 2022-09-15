@@ -10,10 +10,15 @@ class Welcome extends CI_Controller {
     }
 
     public function index() {
-        //$this->welcomemodel->setuptables();
-        $this->load->view('login.php');
+       $this->load->view('homepage.php');
     }
 
+    public function admin(){
+         //$this->welcomemodel->setuptables();
+       
+         $this->load->view('login.php');
+    }
+    
     public function login() {
         $val = $this->students->adminlogin();
         if ($val == "wrong") {
