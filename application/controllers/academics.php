@@ -9,6 +9,8 @@ class  Academics extends CI_controller{
         $menu["menudata"]=$this->menumodel->getpagemenu();
         $slideshow=$this->carouselmodel->displaycarousel();
         $data=$this->students->getschoolinfo();
+        $data1=$this->welcomemodel->getnews();
+        
         $features["rtnschoolidentity"]=$data["schoolidentity"];
         $features["rtnaddress"]=$data["address"];
         $features["rtnmajorcolor"]=$data["majorcolor"];
@@ -17,6 +19,7 @@ class  Academics extends CI_controller{
         $features["rtncarousel"]=$slideshow["carousel"];
         $features["rtnslide"]=$slideshow["slide"];
         $features["menu"]=$menu["menudata"];
+        $features["news"]=$data1;
         $this->load->view("frontend/homepage",$features);
     }
     

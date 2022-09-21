@@ -10,27 +10,25 @@ class facility extends CI_Controller {
         $this->form_validation->set_rules("name", "Facility Name", "required|trim|min_length[3]");
         $this->form_validation->set_rules("description", "Facility Deescription", "required|trim|min_length[3]");
 
-
         $config['upload_path'] = './images/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 10000000;
-        $config['max_width'] = 200000;
-        $config['max_height'] = 200000;
-        $config["encrypt_name"] = TRUE;
-        $config["remove_spaces"] = TRUE;
+        $config['encrypt_name'] = TRUE;
+        $config['remove_spaces'] = TRUE;
+        $config['file_ext_tolower'] = TRUE;
         $this->load->library('upload', $config);
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('facility');
+            $this->load->view('uploads/facility');
         } else {
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());
-                $this->load->view('facility', $error);
+                $this->load->view('uploads/facility', $error);
             } else {
                 $data = $this->upload->data();
-                $upload = array('upload_data' => $this->upload->data());
-                $rec["msg"] = $this->facilitymodel->insertfacility($this->upload->data(["file_name"]));
-                $this->load->view('facilityfeedback', $rec);
+                $upload = array('upload_data' => $data);
+                $rec["msg"] = $this->facilitymodel->insertfacility($data["file_name"]);
+                $this->load->view('feedbacks/facility', $rec);
             }
         }
     }
@@ -41,7 +39,7 @@ class facility extends CI_Controller {
         $rtnvals = $this->facilitymodel->viewfacility();
         $data["rtnhead"] = $rtnvals["head"];
         $data["rtnbody"] = $rtnvals["body"];
-        $this->load->view("viewmenu", $data);
+        $this->load->view("manage", $data);
     }
 
     public function deletethisfacility() {
@@ -49,7 +47,7 @@ class facility extends CI_Controller {
             redirect("welcome/");
 
         $res["msg"] = $this->facilitymodel->deletefacility($this->uri->segment(3));
-        $this->load->view("facilityfeedback", $res);
+        $this->load->view("feedbacks/facility", $res);
     }
 
     public function editthisfacility() {
@@ -57,7 +55,7 @@ class facility extends CI_Controller {
             redirect("welcome/");
 
         $rtnvals = $this->facilitymodel->editfacility($this->uri->segment(3));
-        $this->load->view("editfacility", $rtnvals);
+        $this->load->view("update/facility", $rtnvals);
     }
 
 }

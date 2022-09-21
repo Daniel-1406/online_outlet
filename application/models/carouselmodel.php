@@ -15,9 +15,17 @@ class Carouselmodel extends CI_Model {
         $field["status"] = $this->input->post("status");
 
         if ($this->db->insert("carousel", $field)) {
-            return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Carousel created successfully!</span>";
+            return '<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> Success!</h5>
+                  Carousel Created Successfully ...
+                </div>';
         } else {
-            return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Error!,Unable to create carousel</span>";
+            return '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                  Error Creating Carousel ...
+                </div>';
         }
     }
 
@@ -28,7 +36,7 @@ class Carouselmodel extends CI_Model {
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $res) {
                 $majorcolor = $this->welcomemodel->getmajorcolor();
-                $carousel.="<figure id = 'slide-" . $res->carouselid . "' style='height:100%;'><a class = 'view' href = '#'><img src = './images/" . $res->photo . "' alt = '' width='20px' height='20px'></a>
+                $carousel.="<figure id = 'slide-" . $res->carouselid . "'><a class = 'view' href = '#'><img src = './images/" . $res->photo . "' alt = '' style='width:960px; height:350px;'></a>
             <figcaption>
             <h2>" . $res->heading . "</h2>
             <p>" . $res->description . "</p>
@@ -45,7 +53,6 @@ class Carouselmodel extends CI_Model {
         return $content;
     }
 
-    
     function viewcarosel() {
         $query = $this->db->query("select * from carousel where deleted='f' order by orientation");
         $head = "<th>Carousel name</th><th>Photo</th><th>Heading</th><th>Description</th><th>Url</th><th>Orientation</th><th>Status</th><th>EDIT</th><th>DELETE</th>";
@@ -68,9 +75,17 @@ class Carouselmodel extends CI_Model {
 
     function deletecarousel($id) {
         if ($this->db->query("update carousel set deleted='t' where carouselid=$id")) {
-            return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Carousel deleted successfully!</span>";
+            return '<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> Success!</h5>
+                  Facility Information Deleted Successfully ...
+                </div>';
         } else {
-            return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Error!,Unable to delete carousel</span>";
+            return '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                  Error Deleting facility information ...
+                </div>';
         }
     }
 
@@ -96,9 +111,17 @@ class Carouselmodel extends CI_Model {
     function updatecarousel($name = array()) {
         $this->db->where('carouselid', $name['carouselid']);
         if ($this->db->update("carousel", $name)) {
-            return "<span style='color:green;'>Carousel Information Updated successfully!</span>";
+            return '<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> Success!</h5>
+                  Carousel Information Updated Successfully ...
+                </div>';
         } else {
-            return "<span style='color:;red'>Unable to update carousel information!<br>Try again!</span>";
+            return '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                  Error Updating Carousel information ...
+                </div>';
         }
     }
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Students Login</title>
+  <title>Admin Login</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,17 +19,18 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="<?php print base_url()?>/index2.html" class="h1"><b>Admin login</b></a>
+      <a href="#" class="h1"><b>Admin login</b></a>
     </div>
     <div class="card-body">
-              <?php if(isset($val))print $val?>
+        <b><p class="login-box-msg"><?php if(isset($val))print $val?></p></b>
+              
 
       <?php echo form_open("welcome/login") ?>
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="username" name="username">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>

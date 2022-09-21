@@ -13,18 +13,18 @@ class Menumodel extends CI_Model {
         }
         return $mainmenu;
     }
+
     function mainmenuforupdate() {
         $q = $this->db->query("select * from menu where orientation='Main' and deleted='f'");
-        $mainmenu= array();
+        $mainmenu = array();
         if ($q->num_rows() > 0) {
             $mainmenu.="array('select'=>'-Select Orientation-' ";
             foreach ($q->result() as $r) {
-          $mainmenu[$r->name]=$r->name;
+                $mainmenu[$r->name] = $r->name;
             }
         }
         return $mainmenu;
     }
-
 
     function registermenu() {
         $data["name"] = $this->input->post("name");
@@ -34,9 +34,17 @@ class Menumodel extends CI_Model {
         $data["numbering"] = $this->input->post("numbering");
 
         if ($this->db->insert("menu", $data)) {
-            return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Menu created successfully!</span>";
+            return '<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> Success!</h5>
+                  Menu Created Successfully ...
+                </div>';
         } else {
-            return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Error!,Unable to create menu</span>";
+            return '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                  Error Creating Menu ...
+                </div>';
         }
     }
 
@@ -77,8 +85,6 @@ class Menumodel extends CI_Model {
             foreach ($q->result() as $row) {
                 $form_open = form_open('welcome/delete');
                 $form_hidden = ""; //form_input('del',set_value($row->id,$row->id));
-//                $form_delete = anchor(base_url('index.php/welcome/deletethisstudent/' . $row->id), form_button('button', 'Delete'));
-//                $form_edit = anchor(base_url('index.php/welcome/editthisstudent/' . $row->id), form_button('button', 'Edit'));
                 $form_delete2 = "<a class='btn btn-danger btn-sm' href='deletethismenu/$row->id'><i class='fas fa-trash'> </i>Delete</a>";
                 $form_edit2 = "<a class='btn btn-info btn-sm' href='editthismenu/$row->id'><i class='fas fa-pencil-alt'></i>Edit </a>";
                 $form_close = form_close();
@@ -120,9 +126,17 @@ class Menumodel extends CI_Model {
 
     function deletemenu($id) {
         if ($this->db->query("update menu set deleted='t' where id=$id")) {
-            return "<span style='color:green;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Menu Deleted successfully!</span>";
+            return '<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> Success!</h5>
+                  Menu Deleted Successfully ...
+                </div>';
         } else {
-            return "<span style='color:red;margin-bottom: 80px;padding-left: 20px;padding-top: 10px;font-size: 23px;'>Unable to delete Menu!</span>";
+            return '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                  Error Deleting Menu ...
+                </div>';
         }
     }
 

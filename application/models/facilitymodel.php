@@ -26,28 +26,7 @@ class facilitymodel extends CI_Model {
         }
     }
 
-    function updatefacility($imagename) {
-
-        $field["name"] = $this->input->post("name");
-        $field["photo"] = $imagename;
-        $field["description"] = $this->input->post("description");
-        $field["id"] = $this->input->post("id");
-
-
-        if ($this->db->replace("facility", $field, $field["id"])) {
-            return '<div class="alert alert-success alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h5><i class="icon fas fa-check"></i> Success!</h5>
-                  Facility Information Updated Successfully ...
-                </div>';
-        } else {
-            return '<div class="alert alert-danger alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                  Error Updating facility information ...
-                </div>';
-        }
-    }
+    
 
     function viewfacility() {
         $query = $this->db->query("select * from facility where deleted='f' ");
@@ -78,6 +57,28 @@ class facilitymodel extends CI_Model {
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h5><i class="icon fas fa-ban"></i> Error!</h5>
                   Error deleting information, Try again...
+                </div>';
+        }
+    }
+    function updatefacility($imagename) {
+
+        $field["name"] = $this->input->post("name");
+        $field["photo"] = $imagename;
+        $field["description"] = $this->input->post("description");
+        $field["id"] = $this->input->post("id");
+
+
+        if ($this->db->replace("facility", $field, $field["id"])) {
+            return '<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-check"></i> Success!</h5>
+                  Facility Information Updated Successfully ...
+                </div>';
+        } else {
+            return '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                  Error Updating facility information ...
                 </div>';
         }
     }

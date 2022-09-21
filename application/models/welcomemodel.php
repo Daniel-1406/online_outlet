@@ -70,50 +70,70 @@ class Welcomemodel extends CI_Model {
         }
         return $record;
     }
-        function getschoolinformation() {
-            $qq = $this->db->get("schoolinformation");
-            $record = array();
-            if ($qq->num_rows() > 0) {
-                $row = $qq->row();
-                $record["schoolname"] = $row->schoolname;
-                $record["schoolmotto"] = $row->schoolmotto;
-                $record["email"] = $row->email;
-                $record["address"] = $row->address;
-                $record["nigeirastates"] = $row->nigeirastates;
-                $record["city"] = $row->city;
-                $record["majorcolour"] = $row->majorcolour;
-                $record["minorcolour"] = $row->minorcolour;
-                $record["phonenumber"] = $row->phonenumber;
-            } else {
-                $record["schoolname"] = "";
-                $record["schoolmotto"] = "";
-                $record["email"] = "";
-                $record["address"] = "";
-                $record["nigeirastates"] = "";
-                $record["city"] = "";
-                $record["majorcolour"] = "";
-                $record["minorcolour"] = "";
-                $record["phonenumber"] = "";
-            }
-            return $record;
+
+    function getschoolinformation() {
+        $qq = $this->db->get("schoolinformation");
+        $record = array();
+        if ($qq->num_rows() > 0) {
+            $row = $qq->row();
+            $record["schoolname"] = $row->schoolname;
+            $record["schoolmotto"] = $row->schoolmotto;
+            $record["email"] = $row->email;
+            $record["address"] = $row->address;
+            $record["nigeirastates"] = $row->nigeirastates;
+            $record["city"] = $row->city;
+            $record["majorcolour"] = $row->majorcolour;
+            $record["minorcolour"] = $row->minorcolour;
+            $record["phonenumber"] = $row->phonenumber;
+        } else {
+            $record["schoolname"] = "";
+            $record["schoolmotto"] = "";
+            $record["email"] = "";
+            $record["address"] = "";
+            $record["nigeirastates"] = "";
+            $record["city"] = "";
+            $record["majorcolour"] = "";
+            $record["minorcolour"] = "";
+            $record["phonenumber"] = "";
         }
+        return $record;
+    }
 
-        function setuptables() {
+    function getnews() {
 
-            $q = $this->db->query("SHOW TABLES LIKE 'admin' ");
-            if ($q->num_rows() == 0) {
-                $this->db->query("CREATE TABLE IF NOT EXISTS `admin` (
+
+
+
+        $data = "";
+        $query = $this->db->query("select * FROM news where deleted='f' order by date DESC");
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $result) {
+                $data.="<li class = 'clear'>
+       <div class = 'imgl borderedbox' style='width:120px; height:100%;'><img src = 'images/$result->photo' alt = ''></div>
+        <p class = 'nospace btmspace-15'><a href = '#'>$result->name</a></p>
+        <p>$result->description ...</a></p>
+        </li >";
+            }
+        }
+        return $data;
+    }
+
+    function setuptables() {
+
+        $q = $this->db->query("SHOW TABLES LIKE 'admin' ");
+        if ($q->num_rows() == 0) {
+            $this->db->query("CREATE TABLE IF NOT EXISTS `admin` (
                             `id` int(5) NOT NULL AUTO_INCREMENT,
                             `username` varchar(50) NOT NULL,
                             `password` varchar(50) NOT NULL,
                             PRIMARY KEY (`id`)
                           )");
 
-                $this->db->query("INSERT INTO `admin` (`id`, `username`, `password`) VALUES
+            $this->db->query("INSERT INTO `admin` (`id`, `username`, `password`) VALUES
                             (1, 'daniel', '0f281d173f0fdfdccccd7e5b8edc21f1'),
                             (2, 'david', 'dav123')");
 
-                $this->db->query("CREATE TABLE IF NOT EXISTS `carousel` (
+            $this->db->query("CREATE TABLE IF NOT EXISTS `carousel` (
             `carouselid` int(3) NOT NULL AUTO_INCREMENT,
             `name` varchar(100) NOT NULL,
             `photo` varchar(200) NOT NULL,
@@ -126,7 +146,7 @@ class Welcomemodel extends CI_Model {
             PRIMARY KEY (`carouselid`)
           )");
 
-                $this->db->query("CREATE TABLE IF NOT EXISTS `menu` (
+            $this->db->query("CREATE TABLE IF NOT EXISTS `menu` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `name` varchar(50) NOT NULL,
             `url` varchar(100) NOT NULL,
@@ -137,7 +157,7 @@ class Welcomemodel extends CI_Model {
             PRIMARY KEY (`id`)
           )");
 
-                $this->db->query("CREATE TABLE IF NOT EXISTS `schoolinformation` (
+            $this->db->query("CREATE TABLE IF NOT EXISTS `schoolinformation` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `schoolname` varchar(100) NOT NULL,
             `schoolmotto` varchar(1000) NOT NULL,
@@ -151,7 +171,7 @@ class Welcomemodel extends CI_Model {
             PRIMARY KEY (`id`)
           ) ");
 
-                $this->db->query("CREATE TABLE IF NOT EXISTS `students` (
+            $this->db->query("CREATE TABLE IF NOT EXISTS `students` (
                                 `id` int(5) NOT NULL AUTO_INCREMENT,
                                 `surname` varchar(50) NOT NULL,
                                 `firstname` varchar(50) NOT NULL,
@@ -162,20 +182,20 @@ class Welcomemodel extends CI_Model {
                                 `deleted` varchar(3) NOT NULL DEFAULT 'f',
                                 PRIMARY KEY (`id`)
                               )");
-            }
+        }
 
 
-            $q = $this->db->query("SHOW TABLES LIKE 'nigeirastates' ");
-            if ($q->num_rows() == 0) {
-                $this->db->query("ALTER TABLE `schoolinformation` CHANGE `postcode` `nigeirastates` VARCHAR(50)");
+        $q = $this->db->query("SHOW TABLES LIKE 'nigeirastates' ");
+        if ($q->num_rows() == 0) {
+            $this->db->query("ALTER TABLE `schoolinformation` CHANGE `postcode` `nigeirastates` VARCHAR(50)");
 
-                $this->db->query("CREATE TABLE IF NOT EXISTS `nigeirastates` (
+            $this->db->query("CREATE TABLE IF NOT EXISTS `nigeirastates` (
                             `id` int(11) NOT NULL,
                             `name` varchar(255) NOT NULL,
                             PRIMARY KEY (`id`)
                           )");
 
-                $this->db->query("INSERT INTO `nigeirastates` (`id`, `name`) VALUES
+            $this->db->query("INSERT INTO `nigeirastates` (`id`, `name`) VALUES
                             (1, 'Abia'),
                             (2, 'Adamawa'),
                             (3, 'Akwa Ibom'),
@@ -213,9 +233,8 @@ class Welcomemodel extends CI_Model {
                             (35, 'Taraba'),
                             (36, 'Yobe'),
                             (37, 'Zamfara')");
-            }
         }
-
     }
 
-    
+}
+

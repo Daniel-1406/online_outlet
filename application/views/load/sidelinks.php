@@ -25,6 +25,12 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a href="<?php print base_url() ?>index.php/open/opendashboard" class="nav-link">
+                        <i class="far fa-dot-circle nav-icon"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -36,13 +42,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/welcome/schooldetails" class="nav-link">
+                            <a href="<?php echo base_url(); ?>index.php/open/schoolinfo" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>School Information</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/welcome/socialmedia" class="nav-link">
+                            <a href="<?php echo base_url(); ?>index.php/open/socialmedia" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Social Media</p>
                             </a>
@@ -73,7 +79,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url(); ?>index.php/welcome/openfacility" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>index.php/open/openfacility" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add Facility Info</p>
                                     </a>
@@ -98,13 +104,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url(); ?>index.php/welcome/openevent" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>index.php/open/openevent" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add Event Info</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url(); ?>index.php/eventci/viewevent" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>index.php/event/viewevent" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Manage Events Info</p>
                                     </a>
@@ -122,13 +128,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url(); ?>index.php/welcome/opennews" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>index.php/open/opennews" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add News</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url(); ?>index.php/newsci/viewnews" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>index.php/news/viewnews" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Manage News</p>
                                     </a>
@@ -153,13 +159,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/gallery/upload_photos" class="nav-link">
+                            <a href="<?php echo base_url(); ?>index.php/uploadphotos/openphotos" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Upload photo</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/gallery/viewgallery" class="nav-link">
+                            <a href="<?php echo base_url(); ?>index.php/uploadphotos/viewgallery" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Mange photos</p>
                             </a>
@@ -202,13 +208,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/menuci/openregistermenu" class="nav-link">
+                            <a href="<?php echo base_url(); ?>index.php/menu/openmenu" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Menu</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/menuci/openmenuview" class="nav-link">
+                            <a href="<?php echo base_url(); ?>index.php/menu/openmenuview" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View registered Menu</p>
                             </a>
@@ -226,13 +232,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/carosel/createcarousel" class="nav-link">
+                            <a href="<?php echo base_url(); ?>index.php/carousel/opencarousel" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Carousel</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url(); ?>index.php/carosel/viewcarousel" class="nav-link">
+                            <a href="<?php echo base_url(); ?>index.php/carousel/viewcarousel" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Carousels</p>
                             </a>
@@ -251,41 +257,16 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php print base_url() ?>index.php/welcome/openreg" class="nav-link">
+                            <a href="<?php print base_url() ?>index.php/student/openstudents" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Register Student</p>
                             </a>
                         </li>
                         <li class="nav-item">
                         <li class="nav-item">
-                            <a href="<?php print base_url() ?>index.php/welcome/openstudents" class="nav-link">
+                            <a href="<?php print base_url() ?>index.php/student/managestudents" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Registered Students</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>Admin
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?php print base_url() ?>index.php/welcome/openreg" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Admin Login
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php print base_url() ?>index.php/welcome/open_reg_stu" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Register new Admin</p>
                             </a>
                         </li>
                     </ul>

@@ -7,7 +7,7 @@ class Custompage extends CI_Controller {
     public function opencustompages() {
         if ($this->session->userdata("admin") == "")
             redirect("welcome/");
-        $this->load->view("createcustompages");
+        $this->load->view("uploads/custompages");
     }
 
     public function do_upload() {
@@ -18,11 +18,11 @@ class Custompage extends CI_Controller {
         $this->form_validation->set_rules("content", "Content", "required");
         
         if ($this->form_validation->run() == FALSE) { 
-            $this->load->view('createcustompages');
+            $this->load->view('uploads/custompages');
         } else {  
             $rec["msg"] = $this->custompagemodel->insertcustompage();
 
-            $this->load->view('facilityfeedback', $rec);
+            $this->load->view('feedbacks/custompage', $rec);
         }
     }
     
@@ -34,7 +34,7 @@ class Custompage extends CI_Controller {
         $rtnvals = $this->custompagemodel->getpages();
         $data["rtnhead"] = $rtnvals["head"];
         $data["rtnbody"] = $rtnvals["body"];
-        $this->load->view("viewmenu", $data);
+        $this->load->view("manage", $data);
     }
 
     public function deletethispage() {
@@ -42,7 +42,7 @@ class Custompage extends CI_Controller {
             redirect("welcome/");
 
         $res["msg"] = $this->custompagemodel->deletepage($this->uri->segment(3));
-        $this->load->view("facilityfeedback", $res);
+        $this->load->view("feedbacks/custompage", $res);
     }
 
     public function editthispage() {
@@ -50,7 +50,7 @@ class Custompage extends CI_Controller {
             redirect("welcome/");
 
         $rtnvals = $this->custompagemodel->editpage($this->uri->segment(3));
-        $this->load->view("editcustompages", $rtnvals);
+        $this->load->view("update/custompages", $rtnvals);
     }
 
 }
