@@ -1,10 +1,12 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcomemodel extends CI_Model {
+class Welcomemodel extends CI_Model
+{
 
-    function registerschoolinfo() {
+    function registerschoolinfo()
+    {
         $val["schoolname"] = $this->input->post("schoolname");
         $val["schoolmotto"] = $this->input->post("schoolmotto");
         $val["email"] = $this->input->post("email");
@@ -23,7 +25,8 @@ class Welcomemodel extends CI_Model {
                 </div>';
     }
 
-    function socialmedia() {
+    function socialmedia()
+    {
         $val["twitter"] = $this->input->post("twitter");
         $val["facebook"] = $this->input->post("facebook");
         $val["instagram"] = $this->input->post("instagram");
@@ -36,7 +39,8 @@ class Welcomemodel extends CI_Model {
                 </div>';
     }
 
-    function getnigeriastates() {
+    function getnigeriastates()
+    {
         $qq = $this->db->query("select * from nigeirastates order by name");
         $record = array();
         foreach ($qq->result() as $k) {
@@ -46,7 +50,8 @@ class Welcomemodel extends CI_Model {
         return $record;
     }
 
-    function getmajorcolor() {
+    function getmajorcolor()
+    {
         $q = $this->db->query("select majorcolour from schoolinformation ");
         $color = "";
         foreach ($q->result() as $rows) {
@@ -55,7 +60,8 @@ class Welcomemodel extends CI_Model {
         return $color;
     }
 
-    function getsocialmedialinks() {
+    function getsocialmedialinks()
+    {
         $qq = $this->db->get("socialmedia");
         $record = array();
         if ($qq->num_rows() > 0) {
@@ -71,7 +77,8 @@ class Welcomemodel extends CI_Model {
         return $record;
     }
 
-    function getschoolinformation() {
+    function getschoolinformation()
+    {
         $qq = $this->db->get("schoolinformation");
         $record = array();
         if ($qq->num_rows() > 0) {
@@ -99,26 +106,45 @@ class Welcomemodel extends CI_Model {
         return $record;
     }
 
-    function getnews() {
-
-
-
-
+    function getnews()
+    {
         $data = "";
-        $query = $this->db->query("select * FROM news where deleted='f' order by date DESC");
+        $query = $this->db->query("select * FROM news where deleted='f' order by date DESC LIMIT 3");
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $result) {
-                $data.="<li class = 'clear'>
+                $news = substr($result->description, 0, 280);
+                $data .= "<li class = 'clear'>
        <div class = 'imgl borderedbox' style='width:120px; height:100%;'><img src = 'images/$result->photo' alt = ''></div>
         <p class = 'nospace btmspace-15'><a href = '#'>$result->name</a></p>
-        <p>$result->description ...</a></p>
+        <p>$news ...</a></p>
         </li >";
             }
         }
         return $data;
     }
+    function getnewsarchive()
+    {
+        $data = "";
+        $query = $this->db->query("select * FROM news where deleted='f' order by date DESC");
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $result) {
+                $news = substr($result->description, 0, 280);
+                $name=strtoupper($result->name);
+                $data.="<li style='width:100%;' class='one_half first'>
 
-    function setuptables() {
+                <article><img class='borderedbox' src='../../images/$result->photo' alt='' style='width:100%; height:300px;'>
+                    <h1>$name</h1> 
+                    <p>$news ...</p>
+                    <p class='right'><a href='#'>Read More Here &raquo;</a></p>
+                </article>
+            </li>";
+            }
+        }
+        return $data;
+    }
+
+    function setuptables()
+    {
 
         $q = $this->db->query("SHOW TABLES LIKE 'admin' ");
         if ($q->num_rows() == 0) {
@@ -235,6 +261,4 @@ class Welcomemodel extends CI_Model {
                             (37, 'Zamfara')");
         }
     }
-
 }
-

@@ -10,11 +10,11 @@
       <div class="one_third">
         <p class="nospace btmspace-10">Stay Up to Date With What's Happening</p>
         <ul class="faico clear">
-          <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a class="faicon-twitter" href="./#"><i class="fa fa-twitter"></i></a></li>
           <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
           <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-          <li><a class="faicon-flickr" href="#"><i class="fa fa-flickr"></i></a></li>
-          <li><a class="faicon-rss" href="#"><i class="fa fa-rss"></i></a></li>
+          <li><a class="faicon-flickr" href="#"><i class="fa fa-instagram"></i></a></li>
+          <li><a class="faicon-rss" href="#"><i class="fa fa-google"></i></a></li>
         </ul>
         <form class="clear" method="post" action="#">
           <fieldset>

@@ -97,6 +97,14 @@ class facilitymodel extends CI_Model {
 
         return $db_content;
     }
+    function getfacilities(){
+        $query=$this->db->query("select * from facility where deleted='f' limit 4");
+        $data="";
+        foreach($query->result() as $row){
+            $data.="<li class='btmspace-15'><a href='index.php/$row->id'><em class='heading'>$row->name</em> <img class='borderedbox' src='./images/$row->photo' alt='' style='width:220px; height:150px;'></a></li>";         
+        }
+        return $data;
+    }
 
 }
 

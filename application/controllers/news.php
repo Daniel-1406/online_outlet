@@ -15,9 +15,10 @@ class News extends CI_Controller {
         $config['upload_path'] = './images/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 10000000;
-        $config['encrypt_name'] = TRUE;
-        $config['remove_spaces'] = TRUE;
-        $config['file_ext_tolower'] = TRUE;
+        $config['max_width'] = 200000;
+        $config['max_height'] = 200000;
+        $config["encrypt_name"] = TRUE;
+        $config["remove_spaces"] = TRUE;
         $this->load->library('upload', $config);
 
         if ($this->form_validation->run() == FALSE) {

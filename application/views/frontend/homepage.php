@@ -35,12 +35,8 @@ $data["schoolidentity"] = $rtnschoolidentity;
                 <div class="one_quarter first"> 
                     <!-- ################################################################################################ -->
                     <ul class="nospace">
-                        <li class="btmspace-15"><a href="#"><em class="heading">Prospective Students</em> <img class="borderedbox" src="images/demo/220x95.gif" alt=""></a></li>
-                        <li class="btmspace-15"><a href="#"><em class="heading">Current Students</em> <img class="borderedbox" src="images/demo/220x95.gif" alt=""></a></li>
-                        <li class="btmspace-15"><a href="#"><em class="heading">International Students</em> <img class="borderedbox" src="images/demo/220x95.gif" alt=""></a></li>
-                        <li class="btmspace-15"><a href="#"><em class="heading">International Students</em> <img class="borderedbox" src="images/demo/220x95.gif" alt=""></a></li>
-                        <li><a href="#"><em class="heading">Alumni</em> <img class="borderedbox" src="images/demo/220x95.gif" alt=""></a></li>
-                    </ul>
+                        <?php echo $facilities;?>
+                      </ul>
                     <!-- ################################################################################################ --> 
                 </div>
                 <!-- / Left Column --> 
@@ -52,7 +48,7 @@ $data["schoolidentity"] = $rtnschoolidentity;
                        <?php echo $news;?>
                        
                     </ul>
-                    <p class="right"><a href="#">Click here to view all of the latest news and events &raquo;</a></p>
+                    <p class="right"><a href="index.php/academics/opennewsarchive">Click here to view all of the latest news and events &raquo;</a></p>
                     <!-- ################################################################################################ --> 
                 </div>
                 <!-- / Middle Column --> 
