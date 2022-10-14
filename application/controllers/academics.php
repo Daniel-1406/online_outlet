@@ -27,7 +27,7 @@ class  Academics extends CI_controller
         $this->load->view("frontend/homepage", $features);
     }
 
-    public function gallery()
+    public function gallery($adss)
     {
         $this->welcomemodel->setuptables();
         $menu["menudata"] = $this->menumodel->getpagemenu();
