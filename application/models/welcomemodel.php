@@ -115,33 +115,96 @@ class Welcomemodel extends CI_Model
                 $news = substr($result->description, 0, 280);
                 $data .= "<li class = 'clear'>
        <div class = 'imgl borderedbox' style='width:120px; height:100%;'><img src = 'images/$result->photo' alt = ''></div>
-        <p class = 'nospace btmspace-15'><a href = '#'>$result->name</a></p>
+        <p class = 'nospace btmspace-15'><a href = 'index.php/academics/openwholenews/$result->id'>$result->name</a></p>
         <p>$news ...</a></p>
         </li >";
             }
         }
         return $data;
     }
-    function getnewsarchive()
+    
+    function getfullnews($id)
     {
         $data = "";
-        $query = $this->db->query("select * FROM news where deleted='f' order by date DESC");
+        $query = $this->db->query("select * FROM news where id= '$id'");
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $result) {
                 $news = substr($result->description, 0, 280);
-                $name=strtoupper($result->name);
-                $data.="<li style='width:100%;' class='one_half first'>
-
-                <article><img class='borderedbox' src='../../images/$result->photo' alt='' style='width:100%; height:300px;'>
-                    <h1>$name</h1> 
-                    <p>$news ...</p>
-                    <p class='right'><a href='#'>Read More Here &raquo;</a></p>
+                $data .= " <li class='one_half first' style='width:100%;'>
+                <h2 style='text-align:center;'>$result->name</h2>
+                <article><img class='borderedbox' style='width:100%; height:300px; padding:10px 20px;' src='".base_url()."/images/$result->photo' style='width:100%;padding:20px;' alt=''>
+                    <h1 style='text-align:right;'>$result->date</h1>
+                    <p style='padding:20px;'>$result->description</p>
                 </article>
             </li>";
             }
         }
         return $data;
     }
+    function getothernews($id){
+        $data="";
+        $query = $this->db->query("select * FROM news where not id= '$id' order by date DESC LIMIT 3");
+        if($query->num_rows() > 0){
+            $x=0;
+            foreach($query->result() as $result ){
+                $news = substr($result->description, 0, 100);
+                if($x==0){
+                    $data.="<li class='one_third first'>
+                    <article><img class='borderedbox' style='width:450px; height:300px;' src='".base_url()."/images/$result->photo' alt='' >
+                        <h2>$result->name</h2>
+                        <p>$news ...</p>
+                        <p class='right'><a href='#'>Read More Here &raquo;</a></p>
+                    </article>
+                </li>";
+                }else{
+                    $data.="<li class='one_third'>
+                    <article><img class='borderedbox' style='width:450px; height:300px;' src='".base_url()."/images/$result->photo' alt=''>
+                        <h2>$result->name</h2>
+                        <p>$news ...</p>
+                        <p class='right'><a href='#'>Read More Here &raquo;</a></p>
+                    </article>
+                </li>";
+                }      
+        $x++;
+            }    
+        }
+        return $data;
+    }
+
+    function getnewsarchive()
+    {
+        $data = "";
+        $query = $this->db->query("select * FROM news where deleted='f' order by date DESC");
+        $x=0;
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $result) {
+                $news = substr($result->description, 0, 120);
+                $name=strtoupper($result->name);
+                if($x==0){
+                    $data.="<li class='one_third first'>
+                <article><img class='borderedbox' src='<?=base_url()?>/images/$result->photo' alt='' style='padding:5px; height:250px; width:200px;'>
+                    <h1>$name</h1> 
+                    <p>$news ...</p>
+                    <p class='right'><a href='openwholenews/$result->id'>Read More Here &raquo;</a></p>
+                </article>
+            </li>";
+
+                }else{
+                    $data.="<li class='one_third'>
+                <article><img class='borderedbox' src='../../images/$result->photo' alt='' style='padding:5px; height:250px; width:200px;'>
+                    <h1>$name</h1> 
+                    <p>$news ...</p>
+                    <p class='right'><a href='openwholenews/$result->id'>Read More Here &raquo;</a></p>
+                </article>
+            </li>";
+
+                }
+            $x++;
+            }
+        }
+        return $data;
+    }
+
 
     function setuptables()
     {

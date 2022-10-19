@@ -25,7 +25,23 @@ class Welcome extends CI_Controller {
             $data["val"] = "<span style='color:red'>Wrong Username or password!</span>";
             $this->load->view("login", $data);
         } else {
-            $this->load->view("dashboard1");
+            $data=array();
+            $students=$this->students->getAll();
+            $gallery=$this->gallerymodel->viewgallery();
+            $news=$this->newsmodel->viewnews();
+            $events=$this->eventmodel->viewevent();
+            $facility=$this->facilitymodel->viewfacility();
+            $pages=$this->custompagemodel->getpages();
+            $carousel=$this->carouselmodel->viewcarosel();
+
+            $data["studentsno"]=$students["studentsno"];
+            $data["photosno"]=$gallery["photosno"];
+            $data["newsno"]=$news["newsno"];
+            $data["eventno"]=$events["eventno"];
+            $data["facilityno"]=$facility["facilityno"];
+            $data["pagesno"]=$pages["pagesno"];
+            $data["carouselno"]=$carousel["carouselno"];
+            $this->load->view("dashboard1",$data);
         }
     }
     public function opendashboard(){

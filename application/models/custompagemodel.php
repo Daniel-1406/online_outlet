@@ -51,15 +51,18 @@ class Custompagemodel extends CI_Model {
         $query = $this->db->query("select * from custompages");
         $head = "<th>Page Title</th><th>Date</th><th>Content</th><th>EDIT</th><th>DELETE</th>";
         $body = "";
+        $x=0;
         foreach ($query->result() as $row) {
             $form_open = form_open('welcome/delete');
             $form_edit = "<a class='btn btn-info btn-sm' href='editthispage/$row->id'><i class='fas fa-pencil-alt'></i>Edit </a>";
             $form_delete = "<a class='btn btn-danger btn-sm' href='deletethispage/$row->id'><i class='fas fa-trash'> </i>Delete</a>";
             $form_close = form_close();
             $body.="<tr><td>$row->name</td><td>$row->date</td><td>" . $row->content . "</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
+        $x++;
         }
         $db_content["head"] = $head;
         $db_content["body"] = $body;
+        $db_content["pagesno"] = $x;
         return $db_content;
     }
 

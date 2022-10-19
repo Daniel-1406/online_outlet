@@ -32,6 +32,7 @@ class facilitymodel extends CI_Model {
         $query = $this->db->query("select * from facility where deleted='f' ");
         $head = "<th>Facility name</th><th>Photo</th><th>Description</th><th>EDIT</th><th>DELETE</th>";
         $body = "";
+        $x=0;
 
         foreach ($query->result() as $row) {
             $form_open = form_open('welcome/delete');
@@ -39,9 +40,11 @@ class facilitymodel extends CI_Model {
             $form_delete = "<a class='btn btn-danger btn-sm' href='deletethisfacility/$row->id'><i class='fas fa-trash'> </i>Delete</a>";
             $form_close = form_close();
             $body.="<tr><td>$row->name</td><td><img style='width:100%;' height='150px' src='" . base_url() . "/images/" . $row->photo . "' alt=$row->name /></td><td>" . $row->description . "</td><td>" . $form_open . "" . $form_edit . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete . "" . $form_close . "</td></tr>";
+        $x++;
         }
         $db_content["head"] = $head;
         $db_content["body"] = $body;
+        $db_content["facilityno"] = $x;
         return $db_content;
     }
 

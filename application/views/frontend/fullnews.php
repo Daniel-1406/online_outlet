@@ -18,34 +18,17 @@ $data["schoolidentity"] = $rtnschoolidentity;
         <main class="container clear" style="background-color:<?php echo $rtnminorcolor ?>;">
             <!-- main body -->
             <!-- ################################################################################################ -->
+           
             <div id="portfolio">
-                <h1 style="text-align:center;">Latest News and Stories</h1>
-                <ul class="nospace clear" style="margin:10px; padding:0px 80px;">
-                    <?php echo $newsarchive; ?>
+                <ul class="nospace clear">
+                   <?=$fullnews?>
+                    <h1>OTHER LATEST NEWS AND STORIES ...</h1>
+                   <?=$othernews?>
                 </ul>
             </div>
             <!-- ################################################################################################ -->
             <!-- ################################################################################################ -->
-            <!-- <nav class="pagination">
-                <ul>
-                    <li><a href="#">&laquo; Previous</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><strong>&hellip;</strong></li>
-                    <li><a href="#">6</a></li>
-                    <li class="current"><strong>7</strong></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
-                    <li><strong>&hellip;</strong></li>
-                    <li><a href="#">14</a></li>
-                    <li><a href="#">15</a></li>
-                    <li><a href="#">Next &raquo;</a></li>
-                </ul>
-            </nav> -->
-            <!-- ################################################################################################ -->
-            <!-- ################################################################################################ -->
-
-            <!-- ################################################################################################ -->
+           
             <!-- / main body -->
             <div class="clear"></div>
         </main>

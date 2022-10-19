@@ -38,7 +38,7 @@
                                 <!-- small box -->
                                 <div class="small-box bg-success">
                                     <div class="inner">
-                                        <h3>150</h3>
+                                        <h3><?php echo $studentsno?></h3>
 
                                         <p>Total No. of Students</p>
                                     </div>
@@ -52,7 +52,7 @@
                                 <!-- small box -->
                                 <div class="small-box bg-info">
                                     <div class="inner">
-                                        <h3>150</h3>
+                                        <h3><?php echo $photosno?></h3>
 
                                         <p>Gallery Photos</p>
                                     </div>
@@ -66,7 +66,7 @@
                                 <!-- small box -->
                                 <div class="small-box bg-dark">
                                     <div class="inner">
-                                        <h3>150</h3>
+                                        <h3><?php echo $newsno?></h3>
 
                                         <p>News</p>
                                     </div>
@@ -80,9 +80,51 @@
                                 <!-- small box -->
                                 <div class="small-box bg-gradient-danger">
                                     <div class="inner">
-                                        <h3>150</h3>
+                                        <h3><?php echo $eventno?></h3>
 
                                         <p>Events Info</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-bag"></i>
+                                    </div>
+                                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-gradient-warning">
+                                    <div class="inner">
+                                        <h3><?php echo $pagesno?></h3>
+
+                                        <p>Pages</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-bag"></i>
+                                    </div>
+                                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-gradient-secondary">
+                                    <div class="inner">
+                                        <h3><?php echo $carouselno?></h3>
+
+                                        <p>Carousel</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-bag"></i>
+                                    </div>
+                                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-gradient-purple">
+                                    <div class="inner">
+                                        <h3><?php echo $facilityno?></h3>
+
+                                        <p>Facilities Info</p>
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-bag"></i>

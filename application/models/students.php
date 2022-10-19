@@ -81,6 +81,7 @@ class Students extends CI_Model {
         $query = $this->db->query("select * from students where deleted='f'");
         $head = "<th>Surname</th><th>Firstname</th><th>Gender</th><th>Time of registration</th><th>EDIT</th><th>DELETE</th>";
         $body = "";
+        $x=0;
 
         foreach ($query->result() as $row) {
             $form_open = form_open('welcome/delete');
@@ -89,9 +90,11 @@ class Students extends CI_Model {
             $form_edit2 = "<a class='btn btn-info btn-sm' href='editthisstudent/$row->id'><i class='fas fa-pencil-alt'></i>Edit </a>";
             $form_close = form_close();
             $body.="<tr><td>" . $row->surname . "</td><td>" . $row->firstname . "</td><td>" . $row->gender . "</td><td>" . $row->regdate . "</td><td>" . $form_open . "" . $form_edit2 . "" . $form_close . "</td><td>" . $form_open . "" . $form_delete2 . "" . $form_close . "</td></tr>";
+        $x++;
         }
         $db_content["head"] = $head;
         $db_content["body"] = $body;
+        $db_content["studentsno"]=$x;
         return $db_content;
     }
 
