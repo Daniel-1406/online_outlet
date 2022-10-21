@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--sample changes-->
 <html lang="en">
     <?php $this->load->view("load/header_main") ?>
     <body class="hold-transition sidebar-mini">
