@@ -28,8 +28,14 @@ class Updategallery extends CI_Controller {
             $this->load->view('update/gallery', $data);
         } else {
             if (!$this->upload->do_upload('userfile')) {
-                $data = array('error' => $this->upload->display_errors());
+                $data=array();
+                $error =$this->upload->display_errors();
                 $data = $this->gallerymodel->editgallery($this->input->post('id'));
+                $data['error']=$error;
+                $data['title']=$data['title'];
+                $data['photo']=$data['photo'];
+                $data['numbering']=$data['numbering'];
+                $data['id']=$data['id'];
                 $this->load->view('update/gallery', $data);
             } else {
 

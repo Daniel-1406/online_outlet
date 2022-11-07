@@ -99,6 +99,38 @@ class Eventmodel extends CI_Model {
                 </div>';
         }
     }
+    function getevents(){
+        $query=$this->db->query("select * from event where deleted='f' limit 3");
+        $data="";
+        foreach($query->result() as $row){
+            $data.="<li class='btmspace-15'><a href='index.php/academics/openwholeevent/$row->id'><em class='heading'>$row->name</em><em>$row->date</em><img class='borderedbox' src='./images/$row->photo' alt='' style='width:220px; height:130px;'></a></li>";         
+        }
+        return $data;
+    }
+
+    function getwholeevent($id){
+        $query=$this->db->query("select * from event where id=$id");
+        $data="";
+        foreach($query->result() as $row){
+            $data.="<h1>$row->name</h1>
+            <img class='imgl borderedbox' style='height:200px; width:100%; padding:5px 10px 5px 10px;' src='" . base_url() . "/images/" . $row->photo . "' alt=''>
+            <h1>$row->date</h1>
+
+          <p>$row->description</p>
+         ";
+        }
+        return $data;
+    }
+
+    function getotherevents($id){
+        $query=$this->db->query("select * from event where deleted='f' and not id=$id  order by date");
+        $data="";
+        foreach($query->result() as $row){
+            $data.=" <li><a href='$row->id'>$row->name</a></li>";
+        }
+        return $data;
+    }
+
 
 }
 

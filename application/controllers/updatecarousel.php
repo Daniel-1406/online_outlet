@@ -13,8 +13,8 @@ class Updatecarousel extends CI_Controller {
         $this->form_validation->set_rules("url", "url", "required|trim");
         $this->form_validation->set_rules("status", "Status", "required|trim");
         $this->form_validation->set_rules("orientation", "rientation", "required|trim");
-        $this->form_validation->set_rules("heading", "heading", "required|trim");
-        $this->form_validation->set_rules("description", "Deescription", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("heading", "heading", "required|trim|max_length[40]");
+        $this->form_validation->set_rules("description", "Description", "required|trim");
 
         $config['upload_path'] = './images/';
         $config['allowed_types'] = 'gif|jpg|png';
@@ -30,8 +30,16 @@ class Updatecarousel extends CI_Controller {
             $this->load->view('update/carousel', $rtnvals);
         } else {
             if (!$this->upload->do_upload('userfile')) {
-                $data= array('error' => $this->upload->display_errors());
+                $error=$this->upload->display_errors();
                 $data = $this->carouselmodel->editcarousel($this->input->post('id'));
+                $data['error']=$error;
+                $data['name']=$data['name'];
+                $data['photo']=$data['photo'];
+                $data['description']=$data['description'];
+                $data['heading']=$data['heading'];
+                $data['orientation']=$data['orientation'];
+                $data['status']=$data['status'];
+                $data['carouselid']=$data['carouselid'];
                 $this->load->view('update/carousel', $data);
             } else {
 

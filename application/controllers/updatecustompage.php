@@ -13,7 +13,8 @@ class Updatecustompage extends CI_Controller {
         $this->form_validation->set_rules("content", "Content", "required");
         
         if ($this->form_validation->run() == FALSE) { 
-            $this->load->view('update/custompages');
+            $data = $this->custompagemodel->editpage($this->input->post('id'));
+            $this->load->view('update/custompages',$data);
         } else {  
             $rec["msg"] = $this->custompagemodel->updatecustompage();
 

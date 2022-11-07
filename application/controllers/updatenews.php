@@ -25,8 +25,14 @@ class Updatenews extends CI_Controller {
         } else {
             if (!$this->upload->do_upload('userfile')) {
                 $data=array();
-                $data = array('error' => $this->upload->display_errors());
-                $data = $this->eventmodel->editevent($this->input->post('id'));
+                $error=$this->upload->display_errors();
+                $data = $this->newsmodel->editnews($this->input->post('id'));
+                $data['error']=$error;
+                $data['name']=$data['name'];
+                $data['photo']=$data['photo'];
+                $data['description']=$data['description'];
+                $data['id']=$data['id'];
+                $data['date']=$data['date'];
 
                 $this->load->view('update/news', $data);
             } else {

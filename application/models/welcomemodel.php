@@ -182,7 +182,7 @@ class Welcomemodel extends CI_Model
                 $name=strtoupper($result->name);
                 if($x==0){
                     $data.="<li class='one_third first'>
-                <article><img class='borderedbox' src='<?=base_url()?>/images/$result->photo' alt='' style='padding:5px; height:250px; width:200px;'>
+                <article><img class='borderedbox' src='../../images/$result->photo' alt='' style='padding:5px; height:250px; width:200px;'>
                     <h1>$name</h1> 
                     <p>$news ...</p>
                     <p class='right'><a href='openwholenews/$result->id'>Read More Here &raquo;</a></p>

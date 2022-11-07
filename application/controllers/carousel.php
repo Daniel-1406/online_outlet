@@ -19,7 +19,7 @@ class Carousel extends CI_Controller {
         $this->form_validation->set_rules("status", "Status", "required|trim");
         $this->form_validation->set_rules("orientation", "Orientation", "required|trim");
         $this->form_validation->set_rules("heading", "heading", "required|trim");
-        $this->form_validation->set_rules("description", "Deescription", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("description", "Deescription", "required|trim");
 
 
         $config['upload_path'] = './images/';

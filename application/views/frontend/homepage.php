@@ -35,7 +35,8 @@ $data["schoolidentity"] = $rtnschoolidentity;
                 <div class="one_quarter first"> 
                     <!-- ################################################################################################ -->
                     <ul class="nospace">
-                        <?php echo $facilities;?>
+                        <h1>Latest Events</h1>
+                        <?php echo $events;?>
                       </ul>
                     <!-- ################################################################################################ --> 
                 </div>
@@ -43,7 +44,7 @@ $data["schoolidentity"] = $rtnschoolidentity;
                 <!-- Middle Column -->
                 <div class="one_half"> 
                     <!-- ################################################################################################ -->
-                    <h2>Latest News &amp; Events</h2>
+                    <h2>Latest News</h2>
                     <ul class="nospace listing">
                        <?php echo $news;?>
                        
@@ -55,20 +56,17 @@ $data["schoolidentity"] = $rtnschoolidentity;
                 <!-- Right Column -->
                 <div class="one_quarter sidebar"> 
                     <!-- ################################################################################################ -->
-                    <div class="sdb_holder">
+                    <!-- <div class="sdb_holder">
                         <h6>Virtual Tour</h6>
                         <div class="mediacontainer"><img src="images/demo/video.gif" alt="">
                             <p><a href="#">View More Tour Videos Here</a></p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="sdb_holder">
-                        <h6>Quick Information</h6>
+                        <h1>Our Facilities</h1>
                         <ul class="nospace quickinfo">
-                            <li class="clear"><a href="#"><img src="images/demo/80x80.gif" alt=""> Make An Application</a></li>
-                            <li class="clear"><a href="#"><img src="images/demo/80x80.gif" alt=""> Order A Prospectus</a></li>
-                            <li class="clear"><a href="#"><img src="images/demo/80x80.gif" alt=""> Order A Prospectus</a></li>
-                            <li class="clear"><a href="#"><img src="images/demo/80x80.gif" alt=""> Order A Prospectus</a></li>
-                        </ul>
+                            <?php echo $facilities?>
+                          </ul>
                     </div>
                     <!-- ################################################################################################ --> 
                 </div>

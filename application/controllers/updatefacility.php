@@ -23,8 +23,14 @@ class Updatefacility extends CI_Controller {
             $this->load->view('update/facility', $data);
         } else {
             if (!$this->upload->do_upload('userfile')) {
-                $data= $this->upload->display_errors();
+                $data=array();
+                $error= $this->upload->display_errors();
                 $data = $this->facilitymodel->editfacility($this->input->post('id'));
+                $data['error']=$error;
+                $data['name']=$data['name'];
+                $data['photo']=$data['photo'];
+                $data['description']=$data['description'];
+                $data['id']=$data['id'];
 
                 $this->load->view('update/facility', $data);
             } else {

@@ -94,6 +94,19 @@ class Custompagemodel extends CI_Model {
 
         return $db_content;
     }
+    function displaypage(){
+        $query = $this->db->query("select * from custompages where id=3");
+        $data=array();
+        $data["content"]="";
+        $data["title"]="";
+        $data["date"]="";
+        foreach($query->result() as $row){
+            $data["content"].=$row->content;
+            $data["title"].=$row->name;
+            $data["date"].=$row->date;
+        }
+        return $data;
+    }
 
 }
 

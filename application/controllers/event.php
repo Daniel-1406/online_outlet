@@ -36,7 +36,7 @@ class Event extends CI_Controller {
 
                 $rec["msg"] = $this->eventmodel->insertevent($data["file_name"]);
 
-                $this->load->view('feedback/event', $rec);
+                $this->load->view('feedbacks/event', $rec);
             }
         }
     }

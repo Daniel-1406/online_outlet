@@ -78,12 +78,12 @@ class gallerymodel extends CI_Model {
     function getitems() {
         $query = $this->db->query("select * from gallery where deleted='f' order by numbering");
         $photos = "";
-        $x = 1;
+        $x = 0;
         foreach ($query->result() as $row) {
             if ($x % 4 == 0) {
-                $photos.="<li class='one_quarter first'><a class='nlb' data-lightbox-gallery='gallery1' href='../../images/$row->photo' title='$row->title'><img class='borderedbox' src = '../../images/" . $row->photo . "' alt='$row->title '></a></li>";
+                $photos.="<li class='one_quarter first'><a class='nlb' data-lightbox-gallery='gallery1' href='../../images/$row->photo' title='$row->title'><img class='borderedbox' src = '../../images/" . $row->photo . "' alt='$row->title' style='width:250px; height:250px;'></a></li>";
             } else {
-                $photos.="<li class='one_quarter'><a class='nlb' data-lightbox-gallery='gallery1' href='../../images/$row->photo' title='$row->title'><img class='borderedbox' src='../../images/$row->photo' alt='$row->title '></a></li>";
+                $photos.="<li class='one_quarter'><a class='nlb' data-lightbox-gallery='gallery1' href='../../images/$row->photo' title='$row->title'><img class='borderedbox' src='../../images/$row->photo' alt='$row->title' style='width:250px; height:250px;'></a></li>";
             }
 
             $x++;

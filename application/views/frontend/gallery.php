@@ -15,11 +15,11 @@
       <!-- ################################################################################################ -->
       <div id="gallery">
         <figure>
-          <header class="heading">Latest Images From The University</header>
+          <header class="heading">Photo Speaks</header>
           <ul class="nospace clear">
               <?php echo $gallery?>
              </ul>
-          <figcaption>Gallery Description Goes Here</figcaption>
+          <figcaption>School Gallery</figcaption>
         </figure>
       </div>
       <!-- ################################################################################################ --> 

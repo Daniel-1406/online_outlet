@@ -36,7 +36,7 @@ class Carouselmodel extends CI_Model {
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $res) {
                 $majorcolor = $this->welcomemodel->getmajorcolor();
-                $carousel.="<figure id = 'slide-" . $res->carouselid . "'><a class = 'view' href = '#'><img src = './images/" . $res->photo . "' alt = '' style='width:960px; height:350px;'></a>
+                $carousel.="<figure id = 'slide-" . $res->carouselid . "'><a class = 'view' href = 'index.php/academics/openwholecarousel/$res->carouselid'><img src = './images/" . $res->photo . "' alt = '' style='width:960px; height:350px;'></a>
             <figcaption>
             <h2>" . $res->heading . "</h2>
             <p>" . $res->description . "</p>
@@ -75,22 +75,7 @@ class Carouselmodel extends CI_Model {
         $db_content["carouselno"] = $x;
         return $db_content;
     }
-
-    function deletecarousel($id) {
-        if ($this->db->query("update carousel set deleted='t' where carouselid=$id")) {
-            return '<div class="alert alert-success alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h5><i class="icon fas fa-check"></i> Success!</h5>
-                  Facility Information Deleted Successfully ...
-                </div>';
-        } else {
-            return '<div class="alert alert-danger alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                  Error Deleting facility information ...
-                </div>';
-        }
-    }
+        
 
     function editcarousel($id) {
         $query = $this->db->query("select * from carousel where carouselid=$id");
@@ -126,6 +111,21 @@ class Carouselmodel extends CI_Model {
                   Error Updating Carousel information ...
                 </div>';
         }
+    }
+
+    function getcarousel($id){
+        $query=$this->db->query("select * from carousel where carouselid=$id");
+        $data="";
+        foreach($query->result() as $row){
+            $data.="<h1>".strtoupper($row->name)."</h1>
+            $row->heading
+            <img class='imgl borderedbox' style='height:200px; width:100%; padding:5px 10px 5px 10px;' src='" . base_url() . "/images/" . $row->photo . "' alt=''>
+          <p>$row->description</p>
+         ";
+
+        }
+        return $data;
+
     }
 
 }

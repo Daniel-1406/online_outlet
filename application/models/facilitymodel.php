@@ -101,10 +101,32 @@ class facilitymodel extends CI_Model {
         return $db_content;
     }
     function getfacilities(){
-        $query=$this->db->query("select * from facility where deleted='f' limit 4");
+        $query=$this->db->query("select * from facility where deleted='f' limit 7");
         $data="";
         foreach($query->result() as $row){
-            $data.="<li class='btmspace-15'><a href='index.php/$row->id'><em class='heading'>$row->name</em> <img class='borderedbox' src='./images/$row->photo' alt='' style='width:220px; height:150px;'></a></li>";         
+            $data.="<li class='clear'><a href='index.php/academics/openwholefacility/$row->id'><img src='./images/$row->photo' style='width:80px; height:80px;' alt=''>$row->name</a></li>";
+        }
+        return $data;
+    }
+
+    function getwholefacility($id){
+        $query=$this->db->query("select * from facility where id=$id");
+        $data="";
+        foreach($query->result() as $row){
+            $data.="<h1>$row->name</h1>
+            <img class='imgl borderedbox' style='height:200px; width:100%; padding:5px 10px 5px 10px;' src='" . base_url() . "/images/" . $row->photo . "' alt=''>
+          <p>$row->description</p>
+         ";
+
+        }
+        return $data;
+
+    }
+    function getotherfacilities($id){
+        $query=$this->db->query("select * from facility where deleted='f' and not id=$id");
+        $data="";
+        foreach($query->result() as $row){
+            $data.=" <li><a href='$row->id'>$row->name</a></li>";
         }
         return $data;
     }
