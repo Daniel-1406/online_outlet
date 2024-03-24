@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php $this->load->view("load/header_main") ?>
+<?php $data["name"]=$church;
+      $data["favicon"]=$favicon;?>
+    <?php $this->load->view("load/header_main",$data) ?>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
-            <!-- Navbar -->
+            <??>
             <?php $this->load->view("load/header") ?>
-            <!-- /.navbar -->
-
-            <!-- Main Sidebar Container -->
-            <?php $this->load->view("load/sidelinks") ?>
-
+    
+            <?php $this->load->view("load/sidelinks",$data) ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
@@ -37,12 +36,12 @@
                             <div class="col-md-6"> 
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title-danger">Create Menu</h3>
+                                        <h3 class="card-title-danger">Upload Menu</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <?php
-                                    print form_open("menu/registermenu");
+                                    print form_open("menu/menu_upload");
                                     echo '<div class="bg-danger" style="text-align:center;"><b>' . validation_errors() . '</b></div>';
                                     if (isset($pass_err))
                                         echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $pass_err . '</b></div>';
@@ -64,6 +63,13 @@
                                                 <?php echo $menu; ?>
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Child Menu Orientation</label>
+                                            <select name="suborientation" class="custom-select rounded-0" id="exampleSelectRounded0">
+                                                <?php echo $submenu; ?>
+                                            </select>
+                                        </div>
+                                        
 
                                         <div class="form-group">
                                             <label for="exampleSelectRounded0">Numbering</label>
@@ -92,7 +98,7 @@
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <?php print form_submit("Submit", "Create Menu", 'class="btn btn-primary"') ?>
+                                        <?php print form_submit("Submit", "Upload", 'class="btn btn-primary"') ?>
 
                                     </div>
                                     <?php print form_close(); ?>

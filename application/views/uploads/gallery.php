@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php $this->load->view("load/header_main") ?>
+<?php $data["name"]=$church;
+      $data["favicon"]=$favicon;?>
+    <?php $this->load->view("load/header_main",$data) ?>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
-            <!-- Navbar -->
+            <??>
             <?php $this->load->view("load/header") ?>
-            <!-- /.navbar -->
-
-            <!-- Main Sidebar Container -->
-            <?php $this->load->view("load/sidelinks") ?>
-
+    
+            <?php $this->load->view("load/sidelinks",$data) ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
@@ -17,7 +16,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Upload To Gallery</h1>
+                                <h1>Gallery</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -36,13 +35,12 @@
                             <!-- left column -->
                             <div class="col-md-6"> 
                                 <div class="card card-primary">
-                                    <div class="card-header">
-                                        <h3 class="card-title-danger">Gallery Photos</h3>
+                                    <div class="card-header"><h3>Upload Photo</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <?php
-                                    print form_open_multipart("uploadphotos/do_upload");
+                                    print form_open_multipart("gallery/do_upload");
                                     echo '<div class="bg-danger" style="text-align:center;"><b>' . validation_errors() . '</b></div>';
                                     if (isset($error))
                                         echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $error . '</b></div>';
@@ -52,39 +50,31 @@
                                         echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $pass_err . '</b></div>';
                                     ?>
                                     <div class="card-body">
-                                        upload file:<input type="file"  name="userfile" >
-
-<!--                                        <div class="form-group">
-                                            <label for="exampleInputFile">Upload photo</label>
+                                        
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">Photo</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    upload file:<input type="file" class="custom-file-input" name="userfile" id="exampleInputFile">
-                                                    <label class="custom-file-label " for="exampleInputFile">Choose file</label>
+                                                    <input type="file" class="custom-file-input" name="userfile" id="exampleInputFile">
+                                                <label class="custom-file-label" for="exampleInputFile">Upload Photo</label> 
                                                 </div>
-
-
                                             </div>
-                                        </div>-->
-                                        <div class="form-group">  
-                                            <label for="exampleInputEmail1">Title</label>
-                                            <?php print form_input("title", set_value("title", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Photo title"') ?>
-                                            <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">  
-                                            <label for="exampleInputEmail1">Numbering</label>
-                                            <?php print form_input("numbering", set_value("numbering", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Photo order number"') ?>
-                                            <!--<input type="text" >-->
+                                            <label for="exampleInputEmail1"> Photo Caption</label>
+                                            <?php print form_input("caption", set_value("caption", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter Photo Caption..."') ?>
                                         </div>
-
-
-
-
+                                        <div class="form-group">  
+                                            <label for="exampleInputEmail1"> Category</label>
+                                            <?php print form_input("category", set_value("category", ""), 'class="form-control" id="exampleInputEmail1" placeholder="Enter Category..."') ?>
+                                        </div>
+        
                                     </div>
 
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <?php print form_submit("Submit", "Upload", 'class="btn btn-primary"') ?>
+                                        <?php print form_submit("Submit", "Upload Photo", 'class="btn btn-primary "') ?>
 
                                     </div>
                                     <?php print form_close(); ?>

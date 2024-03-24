@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php $this->load->view("load/header_main") ?>
+<?php $data["name"]=$church;
+      $data["favicon"]=$favicon;?>
+    <?php $this->load->view("load/header_main",$data) ?>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
-            <!-- Navbar -->
+            <??>
             <?php $this->load->view("load/header") ?>
-            <!-- /.navbar -->
-
-            <!-- Main Sidebar Container -->
-            <?php $this->load->view("load/sidelinks") ?>
-
+    
+            <?php $this->load->view("load/sidelinks",$data) ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->

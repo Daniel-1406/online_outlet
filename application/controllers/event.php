@@ -2,70 +2,104 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Event extends CI_Controller {
-
+class event   extends CI_Controller {
 
     public function do_upload() {
-        if ($this->session->userdata("admin") == "")
+        if ($this->session->userdata("admin_pass") == "")
             redirect("welcome/");
-        $this->form_validation->set_rules("name", "Event Name", "required|trim|min_length[3]");
-        $this->form_validation->set_rules("description", "Event Description", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("title", "Event Title", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("speaker", "Speaker", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("summary", "Summary", "required|trim|min_length[3]");
+        $this->form_validation->set_rules("time", "Time", "required|trim");
+        $this->form_validation->set_rules("role", "Role", "required|trim|min_length[3]");
         $this->form_validation->set_rules("date", "Event Date", "required|trim|min_length[3]");
-
+        $this->form_validation->set_rules("location", "Event Location", "required|trim|min_length[3]");
 
         $config['upload_path'] = './images/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 10000000;
+        $config['allowed_types'] = 'jpeg|jpg|png';
+        $config['max_size'] = 10000;
         $config['encrypt_name'] = TRUE;
         $config['remove_spaces'] = TRUE;
         $config['file_ext_tolower'] = TRUE;
         $this->load->library('upload', $config);
 
         if ($this->form_validation->run() == FALSE) {
-            //it hasn't been ran or there are validation errorrs
-            $this->load->view('uploads/event');
+            $church= $this->churchinfo->getchurchinformation();
+            $pic=$this->footerbackg->getfooterbg();
+            $data["church"]=$church["name"];
+            $data["favicon"]=$pic["photo"];
+
+            $this->load->view('uploads/event',$data);
         } else {
             if (!$this->upload->do_upload('userfile')) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->load->view('uploads/event', $error);
+                $data= array('error' => $this->upload->display_errors());
+                $church= $this->churchinfo->getchurchinformation();
+                $pic=$this->footerbackg->getfooterbg();
+                $data["church"]=$church["name"];
+                $data["favicon"]=$pic["photo"];
+
+                $this->load->view('uploads/event', $data);
             } else {
-
-
                 $data = $this->upload->data();
                 $upload = array('upload_data' => $data);
+                $data["msg"] = $this->eventmodel->uploadevent($data["file_name"]);
+                $church= $this->churchinfo->getchurchinformation();
+                $pic=$this->footerbackg->getfooterbg();
+                $data["church"]=$church["name"];
+                $data["favicon"]=$pic["photo"];
 
-                $rec["msg"] = $this->eventmodel->insertevent($data["file_name"]);
-
-                $this->load->view('feedbacks/event', $rec);
+                $this->load->view('feedbacks/sermon', $data);
             }
         }
     }
-    
-    
-    public function viewevent() {
-        if ($this->session->userdata("admin") == "")
+
+    public function openevent() {
+
+        if ($this->session->userdata("admin_pass") == "")
             redirect("welcome/");
-        $rtnvals = $this->eventmodel->viewevent();
-        $data["rtnhead"] = $rtnvals["head"];
-        $data["rtnbody"] = $rtnvals["body"];
+            $church= $this->churchinfo->getchurchinformation();
+            $pic=$this->footerbackg->getfooterbg();
+            $data["church"]=$church["name"];
+            $data["favicon"]=$pic["photo"];
+        $this->load->view('uploads/event',$data);
+    }
+
+    public function viewevents() {
+        if ($this->session->userdata("admin_pass") == "")
+            redirect("welcome/");
+        $data = $this->eventmodel->viewevents();
+        $church= $this->churchinfo->getchurchinformation();
+        $pic=$this->footerbackg->getfooterbg();
+        $data["church"]=$church["name"];
+        $data["favicon"]=$pic["photo"];
+        $data["rtnhead"] = $data["head"];
+        $data["rtnbody"] = $data["body"];
         $this->load->view("manage", $data);
     }
-    
-        public function deletethisevent() {
-        if ($this->session->userdata("admin") == "")
-            redirect("welcome/");
 
-        $res["msg"]=$this->eventmodel->deleteevent($this->uri->segment(3));
-        $this->load->view("feedbacks/event", $res);
+    public function deletethisevent() {
+        if ($this->session->userdata("admin_pass") == "")
+            redirect("welcome/");
+        $church= $this->churchinfo->getchurchinformation();
+        $pic=$this->footerbackg->getfooterbg();
+        $data["church"]=$church["name"];
+        $data["favicon"]=$pic["photo"];
+        $data["msg"] = $this->eventmodel->deleteevent($this->uri->segment(3));
+        $this->load->view("feedbacks/sermon", $data);
     }
 
     public function editthisevent() {
-        if ($this->session->userdata("admin") == "")
+        if ($this->session->userdata("admin_pass") == "")
             redirect("welcome/");
 
-        $rtnvals = $this->eventmodel->editevent($this->uri->segment(3));
-        $this->load->view("update/event", $rtnvals);
+        $data = $this->eventmodel->editevent($this->uri->segment(3));
+        $church= $this->churchinfo->getchurchinformation();
+        $pic=$this->footerbackg->getfooterbg();
+        $data["church"]=$church["name"];
+        $data["favicon"]=$pic["photo"];
+        $this->load->view("updates/event", $data);
     }
 
 }
+
 ?>

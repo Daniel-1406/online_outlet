@@ -1,3 +1,4 @@
+  
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -5,7 +6,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php print base_url()?>index.php/open/opendashboard" class="nav-link">Home</a>
+        <a href="<?php print base_url()?>" class="nav-link">Home</a>
       </li>
       
     </ul>
@@ -48,3 +49,5 @@
       </li>
     </ul>
   </nav>
+  
+  

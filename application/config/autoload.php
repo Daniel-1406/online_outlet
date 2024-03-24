@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'email', 'session','form_validation');
+$autoload['libraries'] = array('database', 'calendar','email', 'session','form_validation','image_lib');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array("students","menumodel","gallerymodel","carouselmodel","welcomemodel","facilitymodel","eventmodel","newsmodel","custompagemodel");
+$autoload['model'] = array('admin','homemodel','minicarouselmodel','detailmodel','displaymodel','headermodel','audiomodel','carouselmodel','loadpagemodel','exhortationmodel','churchinfo','donatemodel','eventmodel','gallerymodel','menumodel','pagemodel','quicklinkmodel','recordmodel','sermonmodel','servicemodel','testimonymodel','videomodel','footerbackg');

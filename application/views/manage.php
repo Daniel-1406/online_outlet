@@ -1,20 +1,67 @@
 <!DOCTYPE html>
-<style type='text/css'>
-
-    td{word-wrap:anywhere}
-</style>
 <html lang="en">
-    <?php $this->load->view("load/header_main") ?>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+    </style>
+<?php $data["name"]=$church;
+      $data["favicon"]=$favicon;?>
+
+    <?php $this->load->view("load/header_main",$data) ?>
     <body class="hold-transition sidebar-mini">
+    <?php if(isset($feedback)) echo $feedback?>
+
         <div class="wrapper">
-            <!-- Navbar -->
+            <??>
             <?php $this->load->view("load/header") ?>
             <!-- /.navbar -->
-            <!-- Content Wrapper. Contains page content -->
 
             <!-- Main Sidebar Container -->
-            <?php $this->load->view("load/sidelinks") ?>
+            
+            <?php $this->load->view("load/sidelinks",$data) ?>
 
+            <!-- Content Wrapper. Contains page content -->
+
+       
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
@@ -65,6 +112,9 @@
 
 
         </div>
+        <div id="feedback" class="modal">
+                             <?php if(isset($feedback)){echo $feedback;}?>
+                        </div>
         <!-- ./wrapper -->
 
     </body>
