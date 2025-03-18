@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('admin','homemodel','minicarouselmodel','detailmodel','displaymodel','headermodel','audiomodel','carouselmodel','loadpagemodel','exhortationmodel','churchinfo','donatemodel','eventmodel','gallerymodel','menumodel','pagemodel','quicklinkmodel','recordmodel','sermonmodel','servicemodel','testimonymodel','videomodel','footerbackg');
+$autoload['model'] = array('admin','productmodel','carouselmodel','storeinfo','menumodel','categorymodel');

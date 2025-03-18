@@ -43,15 +43,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
   color: white;
 }
 </style>
-<?php $data["name"]=$church;
-      $data["favicon"]=$favicon;?>
-    <?php $this->load->view("load/header_main",$data) ?>
+    <?php $this->load->view("load/header_main") ?>
     <body class="hold-transition sidebar-mini" onload="fedbackmessage()" id="body">
         <div class="wrapper">
             <??>
             <?php $this->load->view("load/header") ?>
     
-            <?php $this->load->view("load/sidelinks",$data) ?>
+            <?php $this->load->view("load/sidelinks") ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper" style="background-color:white;">
@@ -83,7 +81,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                         <div class="card-body">
 
                                             <?php
-                                                echo  $msg ;
+                                                echo  $feedback ;
                                             ;
                                             ?> 
 

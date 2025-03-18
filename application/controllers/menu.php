@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Menu extends CI_Controller {
     
-    public function menu_upload() {
+    public function menuUpload() {
 
         if ($this->session->userdata("admin_pass") == "")
             redirect("welcome/");
@@ -16,20 +16,19 @@ class Menu extends CI_Controller {
         $this->form_validation->set_rules("numbering", "Numbering", "required|trim");
 
         if ($this->form_validation->run() == FALSE) {
-            $data= $this->churchinfo->getchurchinformation();
-            $pic=$this->footerbackg->getfooterbg();
-            $data["church"]=$data["name"];
-            $data["favicon"]=$pic["photo"];
+            $storeInfo = $info=$this->storeinfo->getStoreInfo();
+            $data["name"] = $storeInfo["name"];
+            $data["logo"] = $storeInfo["logo"];
             $data["menu"] = $this->menumodel->getmainmenu();
             $data["submenu"] = $this->menumodel->getsubmenus();
 
             $this->load->view('uploads/menu', $data);
         } else {
-            $data= $this->churchinfo->getchurchinformation();
-            $pic=$this->footerbackg->getfooterbg();
-            $data["church"]=$data["name"];
-            $data["favicon"]=$pic["photo"];
-            $data["msg"] = $this->menumodel->uploadmenu();
+            $feedback = $this->menumodel->uploadmenu();
+            $storeInfo = $info=$this->storeinfo->getStoreInfo();
+            $data["name"] = $storeInfo["name"];
+            $data["logo"] = $storeInfo["logo"];
+            $data["feedback"] = $feedback;
 
             $this->load->view('feedbacks/sermon', $data);
         }
@@ -47,15 +46,20 @@ class Menu extends CI_Controller {
         $this->form_validation->set_rules("numbering", "Numbering", "required|trim");
 
         if ($this->form_validation->run() == FALSE) {
-            $main= $this->menumodel->editmenu($this->input->post("id"));
-            $data= $this->churchinfo->getchurchinformation();
-            $pic=$this->footerbackg->getfooterbg();
-            $main["church"]=$data["name"];
-            $main["favicon"]=$pic["photo"];
-            $main["menu"] = $this->menumodel->mainmenuforupdate();
-            $main["submenu"] = $this->menumodel->submenuforupdate();
+            $mainDetail= $this->menumodel->editmenu($this->input->post("id"));
+            $storeInfo = $info=$this->storeinfo->getStoreInfo();
+            $data["name"] = $storeInfo["name"];
+            $data["logo"] = $storeInfo["logo"];
+            $data["menu_name"] = $mainDetail["menu_name"];
+            $data["url"] = $mainDetail["url"];
+            $data["orientation"] = $mainDetail["orientation"];
+            $data["status"] = $mainDetail["status"];
+            $data["numbering"] = $mainDetail["numbering"];
+            $data["id"] = $mainDetail["id"];
+            $data["menu"] = $this->menumodel->mainmenuforupdate();
+            $data["submenu"] = $this->menumodel->submenuforupdate();
 
-            $this->load->view('updates/menu', $main);
+            $this->load->view('updates/menu', $data);
         } else {
             if($this->input->post("suborientation")=="none"){
                 $orientation=$this->input->post("orientation");
@@ -72,12 +76,12 @@ class Menu extends CI_Controller {
             $val["numbering"] = $this->input->post("numbering");
 
 
-            $rec["msg"] = $this->menumodel->updatemenu($val);
-            $data= $this->churchinfo->getchurchinformation();
-            $pic=$this->footerbackg->getfooterbg();
-            $rec["church"]=$data["name"];
-            $rec["favicon"]=$pic["photo"];
-            $this->load->view('feedbacks/sermon', $rec);
+            $feedback= $this->menumodel->updatemenu($val);
+            $storeInfo = $info=$this->storeinfo->getStoreInfo();
+            $data["name"] = $storeInfo["name"];
+            $data["logo"] = $storeInfo["logo"];
+            $data["feedback"] = $feedback;
+            $this->load->view('feedbacks/sermon', $data);
         }
     }
 
@@ -85,10 +89,9 @@ class Menu extends CI_Controller {
         if ($this->session->userdata("admin_pass") == "")
             redirect("welcome/");
         $rtnvals = $this->menumodel->viewmenu();
-        $data= $this->churchinfo->getchurchinformation();
-        $pic=$this->footerbackg->getfooterbg();
-        $data["church"]=$data["name"];
-        $data["favicon"]=$pic["photo"];
+        $storeInfo = $info=$this->storeinfo->getStoreInfo();
+        $data["name"] = $storeInfo["name"];
+        $data["logo"] = $storeInfo["logo"];
         $data["rtnhead"] = $rtnvals["head"];
         $data["rtnbody"] = $rtnvals["body"];
 
@@ -98,35 +101,35 @@ class Menu extends CI_Controller {
     public function deletethismenu() {
         if ($this->session->userdata("admin_pass") == "")
             redirect("welcome/");
-
-        $church= $this->churchinfo->getchurchinformation();
-        $pic=$this->footerbackg->getfooterbg();
-        $data["msg"] = $this->menumodel->deletemenu($this->uri->segment(3));
-        $data["church"]=$church["name"];
-        $data["favicon"]=$pic["photo"];
-        $this->load->view("feedbacks/sermon", $data);
+            $feedback = $this->menumodel->deletemenu($this->uri->segment(3));
+            $storeInfo = $info=$this->storeinfo->getStoreInfo();
+            $data["name"] = $storeInfo["name"];
+            $data["logo"] = $storeInfo["logo"];
+            $data["feedback"] = $feedback;
+            
+            $this->load->view("feedbacks/sermon", $data);
     }
 
     
     public function editthismenu() {
         if ($this->session->userdata("admin_pass") == "")
         redirect("welcome/");
-        $church= $this->churchinfo->getchurchinformation();
-        $pic=$this->footerbackg->getfooterbg();
-        $rtnvals = $this->menumodel->editmenu($this->uri->segment(3));
-        $rtnvals["menu"] = $this->menumodel->mainmenuforupdate();
-        $rtnvals["submenu"] = $this->menumodel->submenuforupdate();
-        $rtnvals["favicon"]=$pic["photo"];
-        $rtnvals["church"]=$church["name"];
-        $this->load->view("updates/menu", $rtnvals);
+        $storeInfo = $info=$this->storeinfo->getStoreInfo();
+            
+        $data = $this->menumodel->editmenu($this->uri->segment(3));
+        $data["menu"] = $this->menumodel->mainmenuforupdate();
+        $data["submenu"] = $this->menumodel->submenuforupdate();
+        $data["name"] = $storeInfo["name"];
+        $data["logo"] = $storeInfo["logo"];
+       
+        $this->load->view("updates/menu", $data);
     }
     public function openmenu() {
         if ($this->session->userdata("admin_pass") == "")
             redirect("welcome/");
-            $data= $this->churchinfo->getchurchinformation();
-            $pic=$this->footerbackg->getfooterbg();
-            $data["church"]=$data["name"];
-            $data["favicon"]=$pic["photo"];
+            $storeInfo = $info=$this->storeinfo->getStoreInfo();
+            $data["name"] = $storeInfo["name"];
+            $data["logo"] = $storeInfo["logo"];
             $data["menu"]= $this->menumodel->getmainmenu();
             $data["submenu"]= $this->menumodel->getsubmenus();
             $this->load->view("uploads/menu", $data);

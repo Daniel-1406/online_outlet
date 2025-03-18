@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $data["name"]=$church;
-      $data["favicon"]=$favicon;?>
-    <?php $this->load->view("load/header_main",$data) ?>
+    <?php $this->load->view("load/header_main") ?>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
-            <??>
-            <?php $this->load->view("load/header") ?>
-    
-            <?php $this->load->view("load/sidelinks",$data) ?>
+\            <?php $this->load->view("load/header") ?>
+            <?php $this->load->view("load/sidelinks") ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
@@ -40,7 +36,7 @@
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <?php
-                                    print form_open_multipart("carousel/do_upload");
+                                    print form_open_multipart("carousel/uploadcarousel");
                                     echo '<div class="bg-danger" style="text-align:center;"><b>' . validation_errors() . '</b></div>';
                                     if (isset($error))
                                         echo '<div class="bg-danger" style="text-align:center;"><b><i class="icon fas fa-ban">ERROR</i>' . $error . '</b></div>';

@@ -125,7 +125,7 @@ class Menumodel extends CI_Model {
         $query = $this->db->query("select * from menu where id=$id");
         $db_content = array();
         foreach ($query->result() as $row) {
-            $db_content["name"] = $row->name;
+            $db_content["menu_name"] = $row->name;
             $db_content["url"] = $row->url;
             $db_content["orientation"] = $row->orientation;
             $db_content["status"] = $row->status;

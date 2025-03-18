@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php $data["name"]=$church;
-      $data["favicon"]=$favicon;?>
-    <?php $this->load->view("load/header_main",$data) ?>
+    <?php $this->load->view("load/header_main") ?>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             <??>
             <?php $this->load->view("load/header") ?>
     
-            <?php $this->load->view("load/sidelinks",$data) ?>
+            <?php $this->load->view("load/sidelinks") ?>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -50,7 +48,7 @@
                                     <div class="card-body">
                                         <div class="form-group">  
                                             <label for="exampleInputEmail1">Menu name</label>
-                                            <?php print form_input("name", set_value("name", $name), 'class="form-control" id="exampleInputEmail1" placeholder="Enter menu name"') ?>
+                                            <?php print form_input("name", set_value("name", $menu_name), 'class="form-control" id="exampleInputEmail1" placeholder="Enter menu name"') ?>
                                             <!--<input type="text" >-->
                                         </div>
                                         <div class="form-group">

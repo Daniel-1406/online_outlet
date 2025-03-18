@@ -4,9 +4,7 @@
     td{word-wrap:anywhere}
 </style>
 <html lang="en">
-<?php $data["name"]=$church;
-      $data["favicon"]=$favicon;?>
-    <?php $this->load->view("load/header_main",$data) ?>
+    <?php $this->load->view("load/header_main") ?>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             <??>
@@ -14,10 +12,8 @@
             <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
-            <?php $data["name"]=$name;
-                  $data["favicon"]=$favicon;
-            ?>
-            <?php $this->load->view("load/sidelinks",$data) ?>
+           
+            <?php $this->load->view("load/sidelinks") ?>
 
             <!-- Content Wrapper. Contains page content -->
 

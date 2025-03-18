@@ -5,7 +5,6 @@
     <?php $this->load->view("load/header_main",$data) ?>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
-            <??>
             <?php $this->load->view("load/header") ?>
     
             <?php $this->load->view("load/sidelinks",$data) ?>

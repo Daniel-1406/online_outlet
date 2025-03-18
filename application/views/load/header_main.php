@@ -46,7 +46,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 </style>
 
-  <link rel="icon" type="image/x-icon" href="<?php print base_url()?>images/<?php echo $favicon ?>">
+  <link rel="icon" type="image/x-icon" href="<?php print base_url()?>images/<?php echo $logo ?>">
   <!-- Google Font: Source Sans Pro -->
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

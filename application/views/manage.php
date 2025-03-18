@@ -43,10 +43,7 @@
   color: white;
 }
     </style>
-<?php $data["name"]=$church;
-      $data["favicon"]=$favicon;?>
-
-    <?php $this->load->view("load/header_main",$data) ?>
+    <?php $this->load->view("load/header_main") ?>
     <body class="hold-transition sidebar-mini">
     <?php if(isset($feedback)) echo $feedback?>
 
@@ -57,7 +54,7 @@
 
             <!-- Main Sidebar Container -->
             
-            <?php $this->load->view("load/sidelinks",$data) ?>
+            <?php $this->load->view("load/sidelinks") ?>
 
             <!-- Content Wrapper. Contains page content -->
 
