@@ -24,3 +24,5 @@
     <!-- Main CSS File -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>f_assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>f_assets/css/plugins/nouislider/nouislider.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>f_assets/css/skins/skin-demo-13.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>f_assets/css/demos/demo-13.css">

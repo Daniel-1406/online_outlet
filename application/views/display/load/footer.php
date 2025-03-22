@@ -61,14 +61,14 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-6">
                             <div class="widget widget-about">
-                                <img src="<?php echo base_url(); ?>f_assets/images/demos/demo-13/logo.png" class="footer-logo" alt="Footer Logo" width="110" height="25">
-                                <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus. </p>
+                                <img src="<?php print base_url()?>images/<?php echo $logo ?>" class="footer-logo" alt="Footer Logo" width="110" height="25">
+                                <p><?php echo $information?></p>
                                 
                                 <div class="widget-about-info">
                                     <div class="row">
                                         <div class="col-sm-6 col-md-4">
                                             <span class="widget-about-title">Got Question? Call us 24/7</span>
-                                            <a href="tel:123456789">+0123 456 789</a>
+                                            <a href="tel:<?php echo $telephone?>"><?php echo $telephone?></a>
                                         </div><!-- End .col-sm-6 -->
                                         <div class="col-sm-6 col-md-8">
                                             <span class="widget-about-title">Payment Method</span>
@@ -129,7 +129,8 @@
 
             <div class="footer-bottom">
                 <div class="container">
-                    <p class="footer-copyright">Copyright © 2019 <script></script>Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+                    <p class="footer-copyright">Copyright © <script>
+                    document.write(new Date().getFullYear());</script> <?php echo $name?>. All Rights Reserved.</p><!-- End .footer-copyright -->
                     <ul class="footer-menu">
                         <li><a href="#">Terms Of Use</a></li>
                         <li><a href="#">Privacy Policy</a></li>

@@ -66,9 +66,12 @@ class Productmodel extends CI_Model {
     }
    
     function viewproduct() {
-        $query = $this->db->query("select * from products where deleted='f' ");
+        $query = $this->db->query("select * from products where deleted='f' order by id desc ");
         $head = "<th>N/A</th><th>PRODUCT NAME</th><th>PHOTO</th><th>INFORMATION</th><th>SELLING PRICE</th><th>EDIT</th><th>DELETE</th>";
         $body = "";
+        $db_content["head"] = "";
+        $db_content["body"] = "";
+        $db_content["productCount"] = 0;
 
         if($query->num_rows() > 0 ){
             $x=1;

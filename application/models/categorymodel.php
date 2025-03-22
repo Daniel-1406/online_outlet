@@ -6,7 +6,7 @@ class Categorymodel extends CI_Model {
 
     
     function uploadcategory() {
-        if($this->input->post("child_orientation")=="none"){
+        if($this->input->post("child_orientation")=="none" || $this->input->post("child_orientation")==""){
             $orientation=$this->input->post("orientation");
 
         }else{
@@ -37,6 +37,8 @@ class Categorymodel extends CI_Model {
 
         $body = "";
         $cat_orienation= "";
+        $table["head"] = "";
+        $table["body"] = "";
         if ($q->num_rows() > 0) {
             $x=1;
             foreach ($q->result() as $res) {

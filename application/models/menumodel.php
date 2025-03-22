@@ -207,6 +207,62 @@ class Menumodel extends CI_Model {
     }
 
 
+    function getmainmenufordisplay() {
+        $q = $this->db->query("select * from menu where orientation='Main' and deleted='f' order by numbering");
+        $menu = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $res) {
+                $submenu = $this->getsubmenufordisplay($res->id);
+                if (!$submenu) {
+                    $menu.="<li class='megamenu-container'>
+                                        <a href='$res->url'>$res->name</a></li>";
+                } else {
+                    $menu.="<li><a href='JavaScript:void(0)' class='sf-with-ul'>$res->name</a>" . $submenu . "</li>";
+                }
+            }
+        }
+        return $menu;
+    }
+    function getsubmenufordisplay($menuid) {
+        $q = $this->db->query("select * from menu where orientation=$menuid and deleted='f' order by numbering");
+        if ($q->num_rows() > 0) {
+            $sublist = "<ul>";
+            foreach ($q->result() as $sub) {
+                $childmenu=$this->getchildmenufordisplay($sub->id);
+                if(!$childmenu){
+                    $sublist.="<li><a href='$sub->url'>$sub->name</a></li>";
+                }else{
+                 $sublist.="<li><a href='JavaScript:void(0)' class='sf-with-ul'>$sub->name</a>".$childmenu."</li>";
+
+                }
+            }
+            $sublist.="</ul>";
+            return $sublist;
+        } else {
+            return false;
+        }
+    }
+    function getchildmenufordisplay($id){
+        $q=$this->db->query("select * from menu where orientation=$id and deleted='f' order by numbering");
+        if($q->num_rows()>0){
+            $sublist="<ul>";
+            
+            foreach($q->result() as $row){
+                $sublist.="<li><a href='$row->url'>$row->name</a></li>";
+
+            }
+            $sublist.="</ul>";
+            return $sublist;
+
+
+        }else{
+            return false;
+
+        }
+    }
+
+
+
 
 }
 

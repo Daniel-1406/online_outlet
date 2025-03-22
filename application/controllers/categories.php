@@ -21,7 +21,7 @@ class categories extends CI_Controller {
             redirect("welcome/");
             $this->form_validation->set_rules("cat_name", "Category Name Item", "required|trim");
             $this->form_validation->set_rules("orientation", "Category Orientation Item", "required|trim");
-            $this->form_validation->set_rules("child_orientation", "Child Orientation Item", "required|trim");
+            //$this->form_validation->set_rules("child_orientation", "Child Orientation Item", "required|trim");
         
         if ($this->form_validation->run() == FALSE) {
             $storeInfo = $info=$this->storeinfo->getStoreInfo();

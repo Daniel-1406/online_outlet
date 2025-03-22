@@ -5,7 +5,7 @@
                             <li>
                                 <a href="#">Links</a>
                                 <ul>
-                                    <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
+                                    <li><a href="tel:#"><i class="icon-phone"></i>Call: <?php echo $telephone?></a></li>
                                 </ul>
                             </li>
                         </ul><!-- End .top-menu -->

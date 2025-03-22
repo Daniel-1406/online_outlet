@@ -5,7 +5,7 @@
 <!-- molla/category-market.html  22 Nov 2019 10:02:55 GMT -->
 <head>
     <?php 
-        $this->load->view("display/load/headerlinks");
+        $this->load->view("display/load/homeheaderlinks");
     ?>
 </head>
 
@@ -96,51 +96,25 @@
 
                             <div class="cat-blocks-container">
                                 <div class="row">
-                                    <div class="col-6 col-md-4 col-lg-3">
-                                        <a href="category.html" class="cat-block">
-                                            <h3 class="cat-block-title">Desktop Computers</h3><!-- End .cat-block-title -->
-                                        </a>
-                                    </div><!-- End .col-6 col-md-4 col-lg-3 -->
-
-                                    <div class="col-6 col-md-4 col-lg-3">
-                                        <a href="category.html" class="cat-block">
-                                            
-                                            <h3 class="cat-block-title">Monitors</h3><!-- End .cat-block-title -->
-                                        </a>
-                                    </div><!-- End .col-6 col-md-4 col-lg-3 -->
-
-                                    <div class="col-6 col-md-4 col-lg-3">
-                                        <a href="category.html" class="cat-block">
-                                           
-                                            <h3 class="cat-block-title">Laptops</h3><!-- End .cat-block-title -->
-                                        </a>
-                                    </div><!-- End .col-6 col-md-4 col-lg-3 -->
-
-                                    <div class="col-6 col-md-4 col-lg-3">
-                                        <a href="category.html" class="cat-block">
-                                            
-                                            <h3 class="cat-block-title">iPads & Tablets</h3><!-- End .cat-block-title -->
-                                        </a>
-                                    </div><!-- End .col-6 col-md-4 col-lg-3 -->
-
-                                    <div class="col-6 col-md-4 col-lg-3">
-                                        <a href="category.html" class="cat-block">
-                                           
-
-                                            <h3 class="cat-block-title">Hard Drives & Storage</h3><!-- End .cat-block-title -->
-                                        </a>
-                                    </div><!-- End .col-6 col-md-4 col-lg-3 -->
-                                    <div class="col-6 col-md-4 col-lg-3">
-                                        <a href="category.html" class="cat-block">
-                                            <h3 class="cat-block-title">Printers & Supplies</h3><!-- End .cat-block-title -->
-                                        </a>
-                                    </div><!-- End .col-6 col-md-4 col-lg-3 -->
-                                    <div class="col-6 col-md-4 col-lg-3">
-                                        <a href="category.html" class="cat-block">
-                                            <h3 class="cat-block-title">Computer Accessories</h3><!-- End .cat-block-title -->
-                                        </a>
-                                    </div><!-- End .col-6 col-md-4 col-lg-3 -->
-                                </div><!-- End .row -->
+                                    <?php 
+                                    if(!$mainCategoriesDisplay){
+                                        echo "";
+                                    }else{
+                                        foreach($mainCategoriesDisplay->result() as $category){
+                                            echo "
+                                            <div class='col-6 col-md-4 col-lg-3'>
+                                            <a href='".base_url()."index.php/home/searchlist/$category->id' class='cat-block'>
+                                                <h3 class='cat-block-title'>$category->cat_name</h3><!-- End .cat-block-title -->
+                                            </a>
+                                        </div><!-- End .col-6 col-md-4 col-lg-3 -->
+    
+                                            ";
+                                        }
+                                    }
+                                   ?>
+                                    
+                                   
+                                    </div><!-- End .row -->
                             </div><!-- End .cat-blocks-container -->
 
                             <div class="mb-2"></div><!-- End .mb-2 -->
@@ -168,37 +142,89 @@
                                         }
                                     }
                                 }'>
-                                <div class="product">
-                                    <figure class="product-media">
-                                    <span class="product-label label-top">Top</span>
-                                    <span class="product-label label-new">New</span>
-                                                <span class="product-label label-sale">Sale</span>
+                                <?php 
+                                if(!$featuredProducts){
+                                    echo "";
+                                }else{
+                                    foreach($featuredProducts->result() as $featuredProduct){
+                                         //category logic
+                                         $category = "";
+                                         $modelProductCat = $this->usermodel->fetchThisProductCatg($featuredProduct->main_category);
+                                         if(!$modelProductCat){
+                                             $category = "";
+ 
+                                         }else{
+                                             $category = $modelProductCat;
+                                         }
 
-                                    <a href="product.html">
-                                            <img src="<?php echo base_url(); ?>f_assets/images/demos/demo-13/products/product-7.jpg" alt="Product image" class="product-image">
+                                         //tag logic
+                                        $labels="";
+                                        $tags_string = $featuredProduct->tag_category;
+                                        $tags_string = trim($tags_string, '[]');
+                                        $tags_string = str_replace('"', '', $tags_string);
+                                        $tags_array = explode(',', $tags_string);
+                                        $tags_array = array_map('trim', $tags_array);
+                                        $arraycount = count($tags_array); 
+
+
+                                        if(!$allTags){
+
+                                        }else{                                           
+                                                foreach ($allTags->result() as $r) {
+                                                    
+                                                    for($i=0; $i < $arraycount ; $i++){
+                                                        if($tags_array[$i] == $r->id && $r->id%2 == 0){
+                                                            $labels.="<span class='product-label label-new'>$r->cat_name</span>";
+                                                        }elseif($tags_array[$i] == $r->id){
+                                                            $labels.="<span class='product-label label-top'>$r->cat_name</span>";
+                                                        }
+                                                        
+                                
+                                                    }
+                                
+                                                   
+                                                }
+                                        }
+                                        
+
+                                         
+                                        echo "
+
+                                        
+                                        <div class='product'>
+                                    <figure class='product-media'>
+                                        $labels
+                                    <a href='".base_url()."index.php/home/product/$featuredProduct->id'>
+                                            <img src='".base_url()."images/$featuredProduct->photo' alt='$featuredProduct->pr_name' class='product-image' style='height:220px; width:218px;'>
                                         </a>
 
-                                        <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                        <div class='product-action-vertical'>
+                                            <a href='".base_url()."index.php/home/addtowishlist/$featuredProduct->main_category' class='btn-product-icon btn-wishlist btn-expandable'><span>add to wishlist</span></a>
+                                            <a href='popup/quickView.html' class='btn-product-icon btn-quickview' title='Quick view'><span>Quick view</span></a>
                                         </div><!-- End .product-action-vertical -->
 
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                        <div class='product-action'>
+                                            <a href='".base_url()."index.php/home/addtocart/$featuredProduct->id' class='btn-product btn-cart' title='Add to cart'><span>add to cart</span></a>
                                         </div><!-- End .product-action -->
                                     </figure><!-- End .product-media -->
 
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            <a href="#">Laptops</a>
+                                    <div class='product-body'>
+                                        <div class='product-cat'>
+                                            <a href='".base_url()."index.php/home/searchlist/$featuredProduct->main_category'>$category</a>
                                         </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">MacBook Pro 13" Display, i5</a></h3><!-- End .product-title -->
-                                        <div class="product-price">
-                                            N 1 200 000.00
+                                        <h3 class='product-title'><a href='".base_url()."index.php/home/product/$featuredProduct->id'>$featuredProduct->pr_name</a></h3><!-- End .product-title -->
+                                        <div class='product-price'>
+                                            <span style='text-decoration:line-through double'>N</span> $featuredProduct->pr_sell_price
                                         </div><!-- End .product-price -->
                                         
                                     </div><!-- End .product-body -->
-                                </div><!-- End .product -->
+                                </div>
+                                        
+                                        ";
+                                    }
+                                }
+                                ?>
+                                <!-- End .product -->
 
                                 
                             </div><!-- End .owl-carousel -->
@@ -211,40 +237,89 @@
 
                             <div class="products mb-3">
                                 <div class="row">
-                                    <div class="col-6 col-md-4 col-xl-3">
-                                    <div class="product">
-                                    <figure class="product-media">
-                                    <span class="product-label label-top">Top</span>
-                                    <span class="product-label label-new">New</span>
-                                                <span class="product-label label-sale">Sale</span>
+                                <?php  
+                                if(!$newStockProducts){
+                                    echo "";
+                                }else{
+                                    foreach($newStockProducts->result() as $product){ 
 
-                                    <a href="product.html">
-                                            <img src="<?php echo base_url(); ?>f_assets/images/demos/demo-13/products/product-7.jpg" alt="Product image" class="product-image">
+                                        //category logic
+                                        $category = "";
+                                        $modelProductCat = $this->usermodel->fetchThisProductCatg($product->main_category);
+                                        if(!$modelProductCat){
+                                            $category = "";
+
+                                        }else{
+                                            $category = $modelProductCat;
+                                        }
+                                        //tag logic
+                                        $labels="";
+                                        $tags_string = $product->tag_category;
+                                        $tags_string = trim($tags_string, '[]');
+                                        $tags_string = str_replace('"', '', $tags_string);
+                                        $tags_array = explode(',', $tags_string);
+                                        $tags_array = array_map('trim', $tags_array);
+                                        $arraycount = count($tags_array); 
+
+
+                                        if(!$allTags){
+
+                                        }else{                                           
+                                                foreach ($allTags->result() as $r) {
+                                                    
+                                                    for($i=0; $i < $arraycount ; $i++){
+                                                        if($tags_array[$i] == $r->id && $r->id%2 == 0){
+                                                            $labels.="<span class='product-label label-new'>$r->cat_name</span>";
+                                                        }elseif($tags_array[$i] == $r->id){
+                                                            $labels.="<span class='product-label label-top'>$r->cat_name</span>";
+                                                        }
+                                                        
+                                
+                                                    }
+                                
+                                                   
+                                                }
+                                        }
+                                        
+
+                                        
+                                        echo "
+                                        <div class='col-6 col-md-4 col-xl-3'>
+                                    <div class='product'>
+                                    <figure class='product-media'>
+                                        $labels
+                                    <a href='".base_url()."index.php/home/product/$product->id'>
+                                            <img src='".base_url()."images/$product->photo' alt='$product->pr_name' class='product-image' style='height:220px; width:218px;'>
                                         </a>
 
-                                        <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                        <div class='product-action-vertical'>
+                                            <a href='".base_url()."index.php/home/addtowishlist/$product->id' class='btn-product-icon btn-wishlist btn-expandable'><span>add to wishlist</span></a>
+                                            <a href='popup/quickView.html' class='btn-product-icon btn-quickview' title='Quick view'><span>Quick view</span></a>
                                         </div><!-- End .product-action-vertical -->
 
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                        <div class='product-action'>
+                                            <a href='".base_url()."index.php/home/addtocart/$product->id' class='btn-product btn-cart' title='Add to cart'><span>add to cart</span></a>
                                         </div><!-- End .product-action -->
                                     </figure><!-- End .product-media -->
 
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            <a href="#">Laptops</a>
+                                    <div class='product-body'>
+                                        <div class='product-cat'>
+                                            <a href='#'>$category</a>
                                         </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">MacBook Pro 13" Display, i5</a></h3><!-- End .product-title -->
-                                        <div class="product-price">
-                                            N 1 200 000.00
+                                        <h3 class='product-title'><a href='".base_url()."index.php/home/product/$product->id'>$product->pr_name</a></h3><!-- End .product-title -->
+                                        <div class='product-price'>
+                                            <span style='text-decoration:line-through double'>N</span> $product->pr_sell_price
                                         </div><!-- End .product-price -->
                                         
                                     </div><!-- End .product-body -->
                                 </div><!-- End .product -->
 
                                     </div><!-- End .col-sm-6 col-md-4 col-xl-3 -->
+                                
+                                        ";
+                                    }
+                                }
+                                    ?>
                                 </div><!-- End .row -->
                             </div><!-- End .products -->
 
@@ -266,94 +341,7 @@
                                 </ul>
                             </nav>
                         </div><!-- End .col-lg-9 -->
-
-                        <aside class="col-lg-3 col-xl-5col order-lg-first">
-                            <div class="sidebar sidebar-shop">
-                                <div class="widget widget-categories">
-                                    <h3 class="widget-title">Product Categories</h3><!-- End .widget-title -->
-
-                                    <div class="widget-body">
-                                        <div class="accordion" id="widget-cat-acc">
-                                            <div class="acc-item">
-                                                <div id="collapse-1" class="show" data-parent="#widget-cat-acc">
-                                                    <div class="collapse-wrap">
-                                                        <ul>
-                                                            <li><a href="#">Phones</a></li>
-                                                            <li><a href="#">Snacks</a></li>
-                                                            <li><a href="#">Electronics</a></li>
-                                                            <li><a href="#">Milk</a></li>
-                                                            <li><a href="#">Fruits and Vegetables</a></li>
-                                                            <li><a href="#">Housing and Real Estates</a></li>
-                                                            <li><a href="#">Computer Accessories</a></li>
-                                                        </ul>
-                                                    </div><!-- End .collapse-wrap -->
-                                                </div><!-- End .collapse -->
-                                            </div><!-- End .acc-item -->
-
-                                            
-                                    </div><!-- End .widget-body -->
-                                </div><!-- End .widget -->
-                                <div class="widget widget-categories">
-                                    <h3 class="widget-title">Tags</h3><!-- End .widget-title -->
-
-                                    <div class="widget-body">
-                                        <div class="accordion" id="widget-cat-acc">
-                                            <div class="acc-item">
-                                                <div id="collapse-1" class="show" data-parent="#widget-cat-acc">
-                                                    <div class="collapse-wrap">
-                                                        <ul>
-                                                        <li><a href="#">New Arrivals</a></li>
-                                                        <li><a href="#">Out of Stock</a></li>
-                                                        <li><a href="#">For Rent</a></li>
-                                                        <li><a href="#">For Men</a></li>
-                                                        <li><a href="#">For Women</a></li>
-                                                        <li><a href="#">For Children</a></li>
-                                                            
-                                                        </ul>
-                                                    </div><!-- End .collapse-wrap -->
-                                                </div><!-- End .collapse -->
-                                            </div><!-- End .acc-item -->
-
-                                            
-                                    </div><!-- End .widget-body -->
-                                </div><!-- End .widget -->
-                                <div class="widget widget-categories">
-                                    <h3 class="widget-title">Price</h3><!-- End .widget-title -->
-
-                                    <div class="widget-body">
-                                        <div class="accordion" id="widget-cat-acc">
-                                            <div class="acc-item">
-                                                <div id="collapse-1" class="show" data-parent="#widget-cat-acc">
-                                                    <div class="collapse-wrap">
-                                                        <ul>
-                                                            <li><a href="#">Under N1 000</a></li>
-                                                            <li><a href="#">N1 000 to N10 000</a></li>
-                                                            <li><a href="#">N10 000 to N50 000</a></li>
-                                                            <li><a href="#">N50 000 to N100 000</a></li>
-                                                            <li><a href="#">N100 000 to N500 000</a></li>
-                                                            <li><a href="#">500 000 to N1 000 000</a></li>
-                                                            <li><a href="#">Above 1 000 000</a></li>
-                                                        </ul>
-                                                    </div><!-- End .collapse-wrap -->
-                                                </div><!-- End .collapse -->
-                                            </div><!-- End .acc-item -->
-
-                                            
-                                    </div><!-- End .widget-body -->
-                                </div><!-- End .widget -->
-
-                                
-                                <div class="widget widget-banner-sidebar">
-                                    <div class="banner-sidebar-title">ad banner 218 x 430px</div><!-- End .ad-title -->
-                                    
-                                    <div class="banner-sidebar banner-overlay">
-                                        <a href="#">
-                                            <img src="<?php echo base_url(); ?>f_assets/images/demos/demo-13/banners/banner-6.jpg" alt="banner">
-                                        </a>
-                                    </div><!-- End .banner-ad -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .sidebar sidebar-shop -->
-                        </aside><!-- End .col-lg-3 -->
+                        <?php $this->load->view("display/load/aside");?>
                     </div><!-- End .row -->
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
